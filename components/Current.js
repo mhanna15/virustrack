@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Alert, Button } from "react-native";
 
 const Current = (props) => {
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
   const [county, setCounty] = useState("");
 
   const findLocation = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        reverseGeocode(latitude, longitude);
       },
       (error) => Alert.alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
-  console.log("-----------------------------------");
-  console.log(latitude + ", " + longitude);
+
+  const reverseGeocode = (lat, long) => {
+    const url = `http://www.mapquestapi.com/geocoding/v1/reverse?key=WPHoEAbXcaStq9DMisav8kZhp0pXOMcx&location=${lat},${long}`;
+    fetch(url)
+      .then((r) => r.json())
+      .then((r) => setCounty(r.results[0].locations[0].adminArea4));
+  };
 
   return (
     <View style={styles.screen}>
@@ -25,6 +29,7 @@ const Current = (props) => {
         There are currently 20 cases and 50 deaths in your county
       </Text>
       <Button title="find me" onPress={findLocation} />
+      <Text>county: {county}</Text>
     </View>
   );
 };
