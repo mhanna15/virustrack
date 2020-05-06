@@ -8,17 +8,13 @@ import Country from "./components/Country";
 import Global from "./components/Global";
 
 export default function App() {
-
-  
-
-  
-
   return (
     <View style={styles.screen}>
       <Header />
       <CurrentLocation />
       <Country />
       <Global />
+      <Search />
     </View>
   );
 }

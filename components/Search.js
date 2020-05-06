@@ -1,12 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 
 const Search = (props) => {
   return (
     <View style={styles.screen}>
-      <Text style={styles.body}>Search for a Specific County:</Text>
-      <TextInput style={styles.input}/>
-      <Button title="search" />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <TextInput
+            placeholder="enter a zip code"
+            keyboardType="number-pad"
+            style={styles.input}
+          />
+          <Button title="search" />
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -15,16 +30,12 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
   },
-  body: {
-    padding: 20,
-    fontSize: 20,
-  },
   input: {
-      borderBottomColor: 'black',
-      borderBottomWidth: 1,
-      padding: 10,
-      marginHorizontal: 50,
-  }
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    padding: 10,
+    marginHorizontal: 50,
+  },
 });
 
 export default Search;

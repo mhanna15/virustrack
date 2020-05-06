@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+  Linking,
+} from "react-native";
 
 import Geocoder from "react-native-geocoding";
 
@@ -9,6 +16,7 @@ const CurrentLocation = (props) => {
   const [countyCases, setCountyCases] = useState("");
   const [countyDeaths, setCountyDeaths] = useState("");
   const [zip, setZip] = useState("");
+  const [locationStatus, setLocationStatus] = useState(true);
 
   Geocoder.init("AIzaSyBcd6WBxVxSf7CZmjs649VaaLxBbaQaJZM");
 
@@ -25,7 +33,7 @@ const CurrentLocation = (props) => {
           gettingCountyCases(r.results[0].address_components[8].long_name);
         });
       },
-      (error) => Alert.alert(error.message),
+      (error) => setLocationStatus(false),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
@@ -40,22 +48,36 @@ const CurrentLocation = (props) => {
       });
   };
 
+  const handleEnableLocation = () => {
+    Linking.openSettings();
+  }
+
   useEffect(() => {
     findLocationAndCasesByZip();
   }, []);
 
-  return (
-    <TouchableOpacity>
-      <Card>
-        <View>
-          <Text>
-            There are currently {countyCases} cases and {countyDeaths} deaths in
-            zipcode {zip}
-          </Text>
-        </View>
-      </Card>
-    </TouchableOpacity>
-  );
+  if (locationStatus) {
+    return (
+      <TouchableOpacity>
+        <Card>
+          <View>
+            <Text>
+              There are currently {countyCases} cases and {countyDeaths} deaths
+              near you {zip}
+            </Text>
+          </View>
+        </Card>
+      </TouchableOpacity>
+    );
+  } else {
+    return (
+      <TouchableOpacity>
+        <Card>
+          <Button title="enable location" onPress={handleEnableLocation} />
+        </Card>
+      </TouchableOpacity>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
