@@ -3,9 +3,7 @@
     "name": "virustrack",
     "slug": "virustrack",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "ios"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
