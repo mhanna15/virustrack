@@ -2,15 +2,19 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import Header from "./components/Header";
-import Current from "./components/Current";
+import CurrentLocation from "./components/CurrentLocation";
 import Search from "./components/Search";
+import Country from "./components/Country";
+import Global from "./components/Global";
 
 export default function App() {
   return (
     <View style={styles.screen}>
       <Header />
-      <Current />
-      {/* <Search /> */}
+      <CurrentLocation />
+      <Country />
+      <Global />
+      <Search />
     </View>
   );
 }
