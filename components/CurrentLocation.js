@@ -1,14 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+
+import Card from "./Card";
 
 const CurrentLocation = (props) => {
   return (
-    <View style={styles.screen}>
-      <Text>
-        There are currently {props.countyCases} cases and {props.countyDeaths}{" "}
-        deaths in zipcode {props.zip}
-      </Text>
-    </View>
+    <TouchableOpacity onPress={props.findLocationAndCasesByZip}>
+      <Card>
+        <View>
+          <Text>
+            There are currently {props.countyCases} cases and{" "}
+            {props.countyDeaths} deaths in zipcode {props.zip}
+          </Text>
+        </View>
+      </Card>
+    </TouchableOpacity>
   );
 };
 
