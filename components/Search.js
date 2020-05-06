@@ -1,28 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
-  Button,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Keyboard,
+  Alert,
 } from "react-native";
 
 const Search = (props) => {
+  const [zip, setZip] = useState("");
+  const [countyCases, setCountyCases] = useState("");
+  const [countyDeaths, setCountyDeaths] = useState("");
+
+
+  const gettingCountyCases = (zipCode) => {
+    const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
+    fetch(url)
+      .then((r) => r.json())
+      .then((r) => {
+        setCountyCases(r.cases);
+        setCountyDeaths(r.deaths);
+        Alert.alert(
+          `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
+        );
+      });
+  };
+
   return (
-    <View style={styles.screen}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.screen}>
+        <View style={styles.input}>
           <TextInput
             placeholder="enter a zip code"
             keyboardType="number-pad"
-            style={styles.input}
+            maxLength={5}
+            onChangeText={(zip) => setZip(zip)}
           />
-          <Button title="search" />
         </View>
-      </TouchableWithoutFeedback>
-    </View>
+        <TouchableOpacity onPress={gettingCountyCases.bind(this, zip)}>
+          <View style={styles.search}>
+            <Text>Search</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -34,7 +58,20 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
     borderBottomWidth: 1,
     padding: 10,
-    marginHorizontal: 50,
+    width: 140,
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modal: {
+    paddingTop: 50,
+    maxHeight: "50%",
+    backgroundColor: "red",
+  },
+  search: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 10,
   },
 });
 
