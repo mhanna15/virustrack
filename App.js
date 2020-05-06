@@ -38,14 +38,14 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#b8c4ff',
+    backgroundColor: "#b8c4ff",
   },
   row: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   col: {
-    width: '50%',
-    height: '45%',
-  }
+    width: "50%",
+    height: "45%",
+  },
 });

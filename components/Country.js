@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     alignSelf: "center",
-    paddingHorizontal: 6
+    paddingHorizontal: 6,
   },
   numbers: {
     alignSelf: "center",

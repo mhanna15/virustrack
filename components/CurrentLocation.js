@@ -95,16 +95,16 @@ const styles = StyleSheet.create({
   things: {
     justifyContent: "center",
     alignSelf: "center",
-    fontSize: 20
+    fontSize: 20,
   },
   currentCard: {
-    backgroundColor: '#ffe367'
+    backgroundColor: "#ffe367",
   },
   numbers: {
     alignSelf: "center",
     fontSize: 30,
     paddingTop: 45,
-  }
+  },
 });
 
 export default CurrentLocation;

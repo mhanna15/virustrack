@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     alignSelf: "center",
-    paddingHorizontal: 17
+    paddingHorizontal: 17,
   },
   numbers: {
     alignSelf: "center",
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   things: {
     justifyContent: "center",
     alignSelf: "center",
-    fontSize: 20
+    fontSize: 20,
   },
 });
 
