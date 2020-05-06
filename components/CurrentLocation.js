@@ -50,7 +50,7 @@ const CurrentLocation = (props) => {
 
   const handleEnableLocation = () => {
     Linking.openSettings();
-  }
+  };
 
   useEffect(() => {
     findLocationAndCasesByZip();
@@ -58,16 +58,15 @@ const CurrentLocation = (props) => {
 
   if (locationStatus) {
     return (
-      <TouchableOpacity>
-        <Card>
-          <View>
-            <Text>
-              There are currently {countyCases} cases and {countyDeaths} deaths
-              near you {zip}
-            </Text>
-          </View>
-        </Card>
-      </TouchableOpacity>
+      <Card style={styles.currentCard}>
+        <TouchableOpacity>
+          <Text style={styles.title}>Near you:</Text>
+          <Text style={styles.numbers}>{countyCases}</Text>
+          <Text style={styles.things}>Cases</Text>
+          <Text style={styles.numbers}>{countyDeaths}</Text>
+          <Text style={styles.things}>Deaths</Text>
+        </TouchableOpacity>
+      </Card>
     );
   } else {
     return (
@@ -90,9 +89,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontSize: 30,
+  title: {
+    fontSize: 35,
   },
+  things: {
+    justifyContent: "center",
+    alignSelf: "center",
+    fontSize: 20
+  },
+  currentCard: {
+    backgroundColor: '#ffe367'
+  },
+  numbers: {
+    alignSelf: "center",
+    fontSize: 30,
+    paddingTop: 45,
+  }
 });
 
 export default CurrentLocation;
