@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 
 import Card from "./Card";
 
@@ -22,15 +22,37 @@ const Country = (props) => {
   }, []);
 
   return (
-    <TouchableOpacity>
-      <Card>
-        <Text>
-          The United States currently has {countryCases} cases and{" "}
-          {countryDeaths} deaths
-        </Text>
-      </Card>
-    </TouchableOpacity>
+    <Card style={styles.countryCard}>
+      <TouchableOpacity>
+        <Text style={styles.title}>America:</Text>
+        <Text style={styles.numbers}>{countryCases}</Text>
+        <Text style={styles.things}>Cases</Text>
+        <Text style={styles.numbers}>{countryDeaths}</Text>
+        <Text style={styles.things}>Deaths</Text>
+      </TouchableOpacity>
+    </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  countryCard: {
+    backgroundColor: "#24e9ff",
+  },
+  title: {
+    fontSize: 35,
+    alignSelf: "center",
+    paddingHorizontal: 6,
+  },
+  numbers: {
+    alignSelf: "center",
+    fontSize: 30,
+    paddingTop: 45,
+  },
+  things: {
+    justifyContent: "center",
+    alignSelf: "center",
+    fontSize: 20,
+  },
+});
 
 export default Country;

@@ -10,11 +10,12 @@ import {
   Alert,
 } from "react-native";
 
+import Card from "./Card";
+
 const Search = (props) => {
   const [zip, setZip] = useState("");
   const [countyCases, setCountyCases] = useState("");
   const [countyDeaths, setCountyDeaths] = useState("");
-
 
   const gettingCountyCases = (zipCode) => {
     const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
@@ -30,29 +31,33 @@ const Search = (props) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.screen}>
-        <View style={styles.input}>
-          <TextInput
-            placeholder="enter a zip code"
-            keyboardType="number-pad"
-            maxLength={5}
-            onChangeText={(zip) => setZip(zip)}
-          />
-        </View>
-        <TouchableOpacity onPress={gettingCountyCases.bind(this, zip)}>
-          <View style={styles.search}>
-            <Text>Search</Text>
+    <Card>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.screen}>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="enter a zip code"
+              keyboardType="number-pad"
+              maxLength={5}
+              onChangeText={(zip) => setZip(zip)}
+            />
           </View>
-        </TouchableOpacity>
-      </View>
-    </TouchableWithoutFeedback>
+          <TouchableOpacity onPress={gettingCountyCases.bind(this, zip)}>
+            <View style={styles.search}>
+              <Text>Search</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    justifyContent: 'center',
+    paddingBottom: 10,
   },
   input: {
     borderBottomColor: "black",

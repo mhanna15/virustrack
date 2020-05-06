@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.top}>
-        <Text>VirusTracker</Text>
+        <Text style={styles.title}>VirusTracker</Text>
       </View>
     </View>
   );
@@ -18,13 +18,16 @@ const styles = StyleSheet.create({
   },
   top: {
     marginTop: 30,
-    padding: 20,
+    padding: 15,
     marginHorizontal: 20,
     justifyContent: "center",
     alignItems: "center",
     borderBottomColor: 'black',
     borderBottomWidth: 1,
   },
+  title: {
+    fontSize:25
+  }
 });
 
 export default Header;

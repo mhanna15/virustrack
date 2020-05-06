@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 import Card from "./Card";
 
@@ -22,15 +22,37 @@ const Global = (props) => {
   }, []);
 
   return (
-    <Card>
+    <Card style={styles.globalCard}>
       <TouchableOpacity>
-        <Text>
-          The whole world current has {globalCases} current cases and{" "}
-          {globalDeaths} deaths
-        </Text>
+        <Text style={styles.title}>Global:</Text>
+        <Text style={styles.numbers}>{globalCases}</Text>
+        <Text style={styles.things}>Cases</Text>
+        <Text style={styles.numbers}>{globalDeaths}</Text>
+        <Text style={styles.things}>Deaths</Text>
       </TouchableOpacity>
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  globalCard: {
+    backgroundColor: "#1fffc0",
+  },
+  title: {
+    fontSize: 35,
+    alignSelf: "center",
+    paddingHorizontal: 17,
+  },
+  numbers: {
+    alignSelf: "center",
+    fontSize: 30,
+    paddingTop: 45,
+  },
+  things: {
+    justifyContent: "center",
+    alignSelf: "center",
+    fontSize: 20,
+  },
+});
 
 export default Global;
