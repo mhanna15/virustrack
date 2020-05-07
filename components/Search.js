@@ -12,6 +12,7 @@ import {
 
 const Search = (props) => {
   const [zip, setZip] = useState("");
+  const [text, setText] = useState("");
 
   const gettingCountyCases = (zipCode) => {
     const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
@@ -22,6 +23,13 @@ const Search = (props) => {
           `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
         );
       });
+      setText("");
+  };
+
+  const handleZipValidation = (text) => {
+    var newText = text.replace(/[^0-9]/g, "");
+    setText(newText);
+    setZip(newText);
   };
 
   return (
@@ -30,11 +38,11 @@ const Search = (props) => {
         <View style={styles.input}>
           <TextInput
             placeholder="search for a specific zip code"
-            // keyboardType="number-pad"
             maxLength={5}
-            onChangeText={(zip) => setZip(zip)}
+            onChangeText={(text) => handleZipValidation(text)}
             onSubmitEditing={gettingCountyCases.bind(this, zip)}
             returnKeyType="search"
+            value={text}
           />
         </View>
       </View>
@@ -45,14 +53,14 @@ const Search = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    maxHeight: 50
+    maxHeight: 50,
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
     padding: 10,
-    width: '95%',
-    alignSelf: 'center',
+    width: "95%",
+    alignSelf: "center",
   },
   // modal: {
   //   paddingTop: 50,
