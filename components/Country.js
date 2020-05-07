@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 
 import Card from "./Card";
 
@@ -22,6 +22,8 @@ const Country = (props) => {
   }, []);
 
   return (
+    <View style={{ flex: 1 }}>
+
     <Card style={styles.countryCard}>
       <TouchableOpacity>
         <Text style={styles.title}>America:</Text>
@@ -31,6 +33,7 @@ const Country = (props) => {
         <Text style={styles.things}>Deaths</Text>
       </TouchableOpacity>
     </Card>
+    </View>
   );
 };
 

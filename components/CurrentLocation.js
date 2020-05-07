@@ -58,15 +58,21 @@ const CurrentLocation = (props) => {
 
   if (locationStatus) {
     return (
-      <Card style={styles.currentCard}>
-        <TouchableOpacity>
-          <Text style={styles.title}>Near you:</Text>
-          <Text style={styles.numbers}>{countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-          <Text style={styles.things}>Cases</Text>
-          <Text style={styles.numbers}>{countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-          <Text style={styles.things}>Deaths</Text>
-        </TouchableOpacity>
-      </Card>
+      <View style={{ flex: 1 }}>
+        <Card style={styles.currentCard}>
+          <TouchableOpacity>
+            <Text style={styles.title}>Near you:</Text>
+            <Text style={styles.numbers}>
+              {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.things}>Cases</Text>
+            <Text style={styles.numbers}>
+              {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.things}>Deaths</Text>
+          </TouchableOpacity>
+        </Card>
+      </View>
     );
   } else {
     return (
@@ -99,8 +105,6 @@ const styles = StyleSheet.create({
   },
   currentCard: {
     backgroundColor: "#ffe367",
-
-
   },
   numbers: {
     alignSelf: "center",

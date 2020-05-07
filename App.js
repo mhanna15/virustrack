@@ -12,6 +12,7 @@ import Search from "./components/Search";
 import Country from "./components/Country";
 import Global from "./components/Global";
 import NewCountry from "./components/NewCountry";
+import Notifications from "./components/Notifications";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 
@@ -38,6 +39,7 @@ export default function App() {
           </Row>
         </Col>
       </Grid>
+      <Notifications />
     </View>
   );
 }
