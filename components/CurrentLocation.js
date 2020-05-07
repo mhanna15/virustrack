@@ -112,11 +112,6 @@ const styles = StyleSheet.create({
     flex: 1,
     maxHeight: 80,
   },
-  body: {
-    padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   title: {
     fontSize: 35,
   },

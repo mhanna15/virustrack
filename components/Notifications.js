@@ -21,14 +21,14 @@ export default Notifications;
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: "#d1ff74",
-    flex: .08,
-    marginTop: -90
+    flex: 0.08,
+    marginTop: -90,
   },
   button: {
     alignItems: "center",
   },
   text: {
-      fontSize: 20,
-      paddingTop: 13
-  }
+    fontSize: 20,
+    paddingTop: 13,
+  },
 });

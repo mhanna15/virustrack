@@ -10,12 +10,12 @@ const NewCountry = (props) => {
   };
   return (
     <View style={styles.screen}>
-      <Card style={styles.card}>
+      <Card>
         <Icon
           name="plus"
           type="font-awesome-5"
           onPress={notSupported}
-            style={styles.button}
+          style={styles.button}
         />
       </Card>
     </View>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    paddingTop: '80%',
+    paddingTop: "80%",
     alignSelf: "center",
     justifyContent: "center",
   },

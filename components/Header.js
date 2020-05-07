@@ -22,12 +22,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     justifyContent: "center",
     alignItems: "center",
-    // borderBottomColor: 'black',
-    // borderBottomWidth: 1,
   },
   title: {
-    fontSize:25
-  }
+    fontSize: 25,
+  },
 });
 
 export default Header;
