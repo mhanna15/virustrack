@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Button,
   Linking,
+  ActivityIndicator,
 } from "react-native";
 
 import Geocoder from "react-native-geocoding";
@@ -15,8 +16,8 @@ import Card from "./Card";
 const CurrentLocation = (props) => {
   const [countyCases, setCountyCases] = useState("");
   const [countyDeaths, setCountyDeaths] = useState("");
-  const [zip, setZip] = useState("");
   const [locationStatus, setLocationStatus] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   Geocoder.init("AIzaSyBcd6WBxVxSf7CZmjs649VaaLxBbaQaJZM");
 
@@ -29,7 +30,6 @@ const CurrentLocation = (props) => {
           latitude: lat,
           longitude: long,
         }).then((r) => {
-          setZip(r.results[0].address_components[8].long_name);
           gettingCountyCases(r.results[0].address_components[8].long_name);
         });
       },
@@ -52,11 +52,30 @@ const CurrentLocation = (props) => {
     Linking.openSettings();
   };
 
+  const mounted = useRef();
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      setLoading(false);
+    }
+  });
+
   useEffect(() => {
     findLocationAndCasesByZip();
   }, []);
 
-  if (locationStatus) {
+  if (loading) {
+    return (
+      <View style={{ flex: 1 }}>
+        <Card style={styles.currentCard}>
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" />
+          </View>
+        </Card>
+      </View>
+    );
+  } else if (locationStatus) {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.currentCard}>
@@ -70,6 +89,9 @@ const CurrentLocation = (props) => {
               {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Deaths</Text>
+            <View style={styles.loader}>
+              <ActivityIndicator size="large" />
+            </View>
           </TouchableOpacity>
         </Card>
       </View>
@@ -110,6 +132,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: 30,
     paddingTop: 45,
+  },
+  loader: {
+    paddingTop: "100%",
   },
 });
 

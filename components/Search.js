@@ -15,15 +15,17 @@ const Search = (props) => {
   const [text, setText] = useState("");
 
   const gettingCountyCases = (zipCode) => {
+    props.setSearchLoading(true);
     const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
+        props.setSearchLoading(false);
         Alert.alert(
           `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
         );
       });
-      setText("");
+    setText("");
   };
 
   const handleZipValidation = (text) => {
@@ -62,11 +64,6 @@ const styles = StyleSheet.create({
     width: "95%",
     alignSelf: "center",
   },
-  // modal: {
-  //   paddingTop: 50,
-  //   maxHeight: "50%",
-  //   backgroundColor: "red",
-  // },
 });
 
 export default Search;

@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  ActivityIndicator,
+} from "react-native";
 
 import Card from "./Card";
 
 const Country = (props) => {
   const [countryCases, setCountryCases] = useState("");
   const [countryDeaths, setCountryDeaths] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const getCasesByCountry = () => {
     const url = "https://api.thevirustracker.com/free-api?countryTotal=US";
@@ -17,24 +24,48 @@ const Country = (props) => {
       });
   };
 
+  const mounted = useRef();
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      setLoading(false);
+    }
+  });
+
   useEffect(() => {
     getCasesByCountry();
   }, []);
 
-  return (
-    <View style={{ flex: 1 }}>
-
-    <Card style={styles.countryCard}>
-      <TouchableOpacity>
-        <Text style={styles.title}>America:</Text>
-        <Text style={styles.numbers}>{countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-        <Text style={styles.things}>Cases</Text>
-        <Text style={styles.numbers}>{countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-        <Text style={styles.things}>Deaths</Text>
-      </TouchableOpacity>
-    </Card>
-    </View>
-  );
+  if (loading) {
+    return (
+      <View style={{ flex: 1 }}>
+        <Card style={styles.countryCard}>
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" />
+          </View>
+        </Card>
+      </View>
+    );
+  } else {
+    return (
+      <View style={{ flex: 1 }}>
+        <Card style={styles.countryCard}>
+          <TouchableOpacity>
+            <Text style={styles.title}>America:</Text>
+            <Text style={styles.numbers}>
+              {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.things}>Cases</Text>
+            <Text style={styles.numbers}>
+              {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.things}>Deaths</Text>
+          </TouchableOpacity>
+        </Card>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -55,6 +86,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     fontSize: 20,
+  },
+  loader: {
+    paddingTop: "100%",
   },
 });
 

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   TouchableWithoutFeedback,
   View,
   Keyboard,
+  ActivityIndicator
 } from "react-native";
 
 import Header from "./components/Header";
@@ -17,30 +18,43 @@ import Notifications from "./components/Notifications";
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default function App() {
+  const [searchLoading, setSearchLoading] = useState(false);
+
+
+  if (searchLoading) {
+    return (
+      <View style={styles.loader}>
+        <ActivityIndicator size='large'/>
+      </View>
+    )
+  }
+
   return (
-    <View style={styles.screen}>
-      <Header />
-      <Search />
-      <Grid>
-        <Col style={styles.col}>
-          <Row style={styles.row}>
-            <CurrentLocation />
-          </Row>
-          <Row style={styles.row}>
-            <Country />
-          </Row>
-        </Col>
-        <Col style={styles.col}>
-          <Row style={styles.row}>
-            <Global />
-          </Row>
-          <Row style={styles.row}>
-            <NewCountry />
-          </Row>
-        </Col>
-      </Grid>
-      <Notifications />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.screen}>
+        <Header />
+        <Search setSearchLoading={setSearchLoading} />
+        <Grid>
+          <Col style={styles.col}>
+            <Row style={styles.row}>
+              <CurrentLocation />
+            </Row>
+            <Row style={styles.row}>
+              <Country />
+            </Row>
+          </Col>
+          <Col style={styles.col}>
+            <Row style={styles.row}>
+              <Global />
+            </Row>
+            <Row style={styles.row}>
+              <NewCountry />
+            </Row>
+          </Col>
+        </Grid>
+        <Notifications />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -57,4 +71,10 @@ const styles = StyleSheet.create({
     width: "50%",
     height: "45%",
   },
+  loader: {
+    flex: 1,
+    backgroundColor: "#b8c4ff",
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
