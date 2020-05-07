@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
   TouchableWithoutFeedback,
-  TouchableOpacity,
   Keyboard,
   Alert,
 } from "react-native";
@@ -15,15 +13,23 @@ const Search = (props) => {
   const [text, setText] = useState("");
 
   const gettingCountyCases = (zipCode) => {
+    if (zip.length != 5) {
+      Alert.alert("please enter a 5 digit zip code");
+      return;
+    }
     props.setSearchLoading(true);
     const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
         props.setSearchLoading(false);
-        Alert.alert(
-          `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
-        );
+        if (r.cases == undefined || r.deaths == undefined) {
+          Alert.alert("please try another zip code");
+        } else {
+          Alert.alert(
+            `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
+          );
+        }
       });
     setText("");
   };
