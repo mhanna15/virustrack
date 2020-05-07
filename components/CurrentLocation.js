@@ -61,9 +61,9 @@ const CurrentLocation = (props) => {
       <Card style={styles.currentCard}>
         <TouchableOpacity>
           <Text style={styles.title}>Near you:</Text>
-          <Text style={styles.numbers}>{countyCases}</Text>
+          <Text style={styles.numbers}>{countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
           <Text style={styles.things}>Cases</Text>
-          <Text style={styles.numbers}>{countyDeaths}</Text>
+          <Text style={styles.numbers}>{countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
           <Text style={styles.things}>Deaths</Text>
         </TouchableOpacity>
       </Card>
@@ -71,7 +71,7 @@ const CurrentLocation = (props) => {
   } else {
     return (
       <TouchableOpacity>
-        <Card>
+        <Card style={styles.card}>
           <Button title="enable location" onPress={handleEnableLocation} />
         </Card>
       </TouchableOpacity>
@@ -99,6 +99,8 @@ const styles = StyleSheet.create({
   },
   currentCard: {
     backgroundColor: "#ffe367",
+
+
   },
   numbers: {
     alignSelf: "center",

@@ -25,9 +25,9 @@ const Country = (props) => {
     <Card style={styles.countryCard}>
       <TouchableOpacity>
         <Text style={styles.title}>America:</Text>
-        <Text style={styles.numbers}>{countryCases}</Text>
+        <Text style={styles.numbers}>{countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
         <Text style={styles.things}>Cases</Text>
-        <Text style={styles.numbers}>{countryDeaths}</Text>
+        <Text style={styles.numbers}>{countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
         <Text style={styles.things}>Deaths</Text>
       </TouchableOpacity>
     </Card>

@@ -25,9 +25,9 @@ const Global = (props) => {
     <Card style={styles.globalCard}>
       <TouchableOpacity>
         <Text style={styles.title}>Global:</Text>
-        <Text style={styles.numbers}>{globalCases}</Text>
+        <Text style={styles.numbers}>{globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
         <Text style={styles.things}>Cases</Text>
-        <Text style={styles.numbers}>{globalDeaths}</Text>
+        <Text style={styles.numbers}>{globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
         <Text style={styles.things}>Deaths</Text>
       </TouchableOpacity>
     </Card>
@@ -37,6 +37,7 @@ const Global = (props) => {
 const styles = StyleSheet.create({
   globalCard: {
     backgroundColor: "#1fffc0",
+
   },
   title: {
     fontSize: 35,

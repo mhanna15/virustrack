@@ -10,20 +10,14 @@ import {
   Alert,
 } from "react-native";
 
-import Card from "./Card";
-
 const Search = (props) => {
   const [zip, setZip] = useState("");
-  const [countyCases, setCountyCases] = useState("");
-  const [countyDeaths, setCountyDeaths] = useState("");
 
   const gettingCountyCases = (zipCode) => {
     const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
-        setCountyCases(r.cases);
-        setCountyDeaths(r.deaths);
         Alert.alert(
           `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
         );
@@ -31,53 +25,40 @@ const Search = (props) => {
   };
 
   return (
-    <Card>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.screen}>
-          <View style={styles.input}>
-            <TextInput
-              placeholder="enter a zip code"
-              keyboardType="number-pad"
-              maxLength={5}
-              onChangeText={(zip) => setZip(zip)}
-            />
-          </View>
-          <TouchableOpacity onPress={gettingCountyCases.bind(this, zip)}>
-            <View style={styles.search}>
-              <Text>Search</Text>
-            </View>
-          </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.screen}>
+        <View style={styles.input}>
+          <TextInput
+            placeholder="search for a specific zip code"
+            // keyboardType="number-pad"
+            maxLength={5}
+            onChangeText={(zip) => setZip(zip)}
+            onSubmitEditing={gettingCountyCases.bind(this, zip)}
+            returnKeyType="search"
+          />
         </View>
-      </TouchableWithoutFeedback>
-    </Card>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
-    paddingBottom: 10,
+    maxHeight: 50
   },
   input: {
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
+    backgroundColor: 'white',
+    borderRadius: 10,
     padding: 10,
-    width: 140,
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
+    width: '95%',
+    alignSelf: 'center',
   },
-  modal: {
-    paddingTop: 50,
-    maxHeight: "50%",
-    backgroundColor: "red",
-  },
-  search: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 10,
-  },
+  // modal: {
+  //   paddingTop: 50,
+  //   maxHeight: "50%",
+  //   backgroundColor: "red",
+  // },
 });
 
 export default Search;
