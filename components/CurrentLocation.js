@@ -7,6 +7,7 @@ import {
   Button,
   Linking,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 
 import Geocoder from "react-native-geocoding";
@@ -30,8 +31,11 @@ const CurrentLocation = (props) => {
           latitude: lat,
           longitude: long,
         }).then((r) => {
-          console.log(r.results[0].address_components.filter(d=>parseInt(d.long_name.length) == 5).filter(d=>d.types[d.types.indexOf('postal_code')])[0].long_name)
-          gettingCountyCases(r.results[0].address_components.filter(d=>parseInt(d.long_name.length) == 5).filter(d=>d.types[d.types.indexOf('postal_code')])[0].long_name);
+          gettingCountyCases(
+            r.results[0].address_components.filter(
+              (d) => d.types[d.types.indexOf("postal_code")]
+            )[0].long_name
+          );
         });
       },
       (error) => setLocationStatus(false),
@@ -44,8 +48,14 @@ const CurrentLocation = (props) => {
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
-        setCountyCases(r.cases);
-        setCountyDeaths(r.deaths);
+        if (r.cases == undefined || r.deaths == undefined) {
+          setCountyCases("Err");
+          setCountyDeaths("Err");
+          Alert.alert("try entering another zip code near you");
+        } else {
+          setCountyCases(r.cases);
+          setCountyDeaths(r.deaths);
+        }
       });
   };
 
@@ -101,8 +111,10 @@ const CurrentLocation = (props) => {
   } else {
     return (
       <TouchableOpacity>
-        <Card style={styles.card}>
-          <Button title="enable location" onPress={handleEnableLocation} />
+        <Card style={styles.currentCard}>
+          <View style={styles.location}>
+            <Button title="enable location" onPress={handleEnableLocation} />
+          </View>
         </Card>
       </TouchableOpacity>
     );
@@ -132,6 +144,10 @@ const styles = StyleSheet.create({
   },
   loader: {
     paddingTop: "100%",
+  },
+  location: {
+    flex: 1,
+    paddingTop: '90%'
   },
 });
 
