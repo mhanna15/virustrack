@@ -41,6 +41,7 @@ const Global = (props) => {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.globalCard}>
+          <Text style={styles.title}>Global:</Text>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
           </View>

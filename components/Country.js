@@ -41,6 +41,7 @@ const Country = (props) => {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.countryCard}>
+          <Text style={styles.title}>America:</Text>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
           </View>

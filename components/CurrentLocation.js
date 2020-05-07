@@ -30,7 +30,8 @@ const CurrentLocation = (props) => {
           latitude: lat,
           longitude: long,
         }).then((r) => {
-          gettingCountyCases(r.results[0].address_components[8].long_name);
+          console.log(r.results[0].address_components.filter(d=>parseInt(d.long_name.length) == 5).filter(d=>d.types[d.types.indexOf('postal_code')])[0].long_name)
+          gettingCountyCases(r.results[0].address_components.filter(d=>parseInt(d.long_name.length) == 5).filter(d=>d.types[d.types.indexOf('postal_code')])[0].long_name);
         });
       },
       (error) => setLocationStatus(false),
@@ -69,6 +70,7 @@ const CurrentLocation = (props) => {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.currentCard}>
+          <Text style={styles.title}>Near you:</Text>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
           </View>
