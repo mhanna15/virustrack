@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   TouchableWithoutFeedback,
   View,
   Keyboard,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal,
+  Text,
 } from "react-native";
 
 import Header from "./components/Header";
@@ -20,20 +22,24 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 export default function App() {
   const [searchLoading, setSearchLoading] = useState(false);
 
-
-  if (searchLoading) {
-    return (
-      <View style={styles.loader}>
-        <ActivityIndicator size='large'/>
-      </View>
-    )
-  }
+  // if (searchLoading) {
+  //   return (
+  //     <View style={styles.loader}>
+  //       <ActivityIndicator size='large'/>
+  //     </View>
+  //   )
+  // }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.screen}>
         <Header />
         <Search setSearchLoading={setSearchLoading} />
+        <Modal visible={searchLoading}>
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" />
+          </View>
+        </Modal>
         <Grid>
           <Col style={styles.col}>
             <Row style={styles.row}>
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
   loader: {
     flex: 1,
     backgroundColor: "#b8c4ff",
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
