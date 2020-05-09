@@ -7,12 +7,12 @@ import {
   Button,
   Linking,
   ActivityIndicator,
-  Alert,
   AppState,
 } from "react-native";
 
 import Geocoder from "react-native-geocoding";
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import Modal from "react-native-modal";
 
 import Card from "./Card";
 
@@ -90,10 +90,12 @@ function abbrState(input, to) {
 }
 
 const CurrentLocation = (props) => {
+  const [county, setCounty] = useState("");
   const [countyCases, setCountyCases] = useState("");
   const [countyDeaths, setCountyDeaths] = useState("");
   const [locationStatus, setLocationStatus] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [detailView, setDetailView] = useState(false);
 
   Geocoder.init("AIzaSyBcd6WBxVxSf7CZmjs649VaaLxBbaQaJZM");
 
@@ -116,6 +118,7 @@ const CurrentLocation = (props) => {
       .then((r) => r.json())
       .then((r) => {
         var county = r.results[0].locations[0].adminArea4;
+        setCounty(county);
         var state = r.results[0].locations[0].adminArea3;
         state = abbrState(state, "name");
         gettingCountyCases(county, state);
@@ -160,6 +163,14 @@ const CurrentLocation = (props) => {
     findLocationAndCasesByZip();
   }, []);
 
+  const showMore = () => {
+    setDetailView(true);
+  };
+
+  const showLess = () => {
+    setDetailView(false);
+  };
+
   if (loading) {
     return (
       <View style={{ flex: 1 }}>
@@ -174,8 +185,28 @@ const CurrentLocation = (props) => {
   } else if (locationStatus) {
     return (
       <View style={{ flex: 1 }}>
+        <Modal
+          isVisible={detailView}
+          transparent={true}
+          onBackdropPress={showLess}
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+        >
+          <View style={styles.modal}>
+            <Text style={styles.detailText}>County: {county}</Text>
+            <Text style={styles.detailText}>
+              Total Cases:{" "}
+              {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Total Deaths:{" "}
+              {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailTextSmall}>Source: CSBS</Text>
+          </View>
+        </Modal>
         <Card style={styles.currentCard}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showMore}>
             <Text style={styles.title}>Near you:</Text>
             <Text style={styles.numbers}>
               {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -238,6 +269,27 @@ const styles = StyleSheet.create({
   location: {
     alignItems: "center",
     justifyContent: "center",
+  },
+  modal: {
+    flex: 1,
+    marginVertical: "40%",
+    marginHorizontal: "10%",
+    borderRadius: RFValue(20),
+    backgroundColor: "rgb(124,226,232)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  detailText: {
+    fontSize: RFValue(18),
+    alignSelf: "flex-start",
+    paddingLeft: RFValue(10),
+    paddingVertical: RFValue(10),
+  },
+  detailTextSmall: {
+    position: "absolute",
+    top: RFValue(440),
+    fontSize: RFValue(10),
+    justifyContent: "flex-end",
   },
 });
 

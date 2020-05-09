@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import Modal from "react-native-modal";
 
 import Card from "./Card";
 
@@ -15,6 +16,10 @@ const Country = (props) => {
   const [countryCases, setCountryCases] = useState("");
   const [countryDeaths, setCountryDeaths] = useState("");
   const [loading, setLoading] = useState(true);
+  const [detailView, setDetailView] = useState(false);
+  const [recovered, setRecovered] = useState("");
+  const [newCases, setNewCases] = useState("");
+  const [newDeaths, setNewDeaths] = useState("");
 
   const getCasesByCountry = () => {
     const url = "https://api.thevirustracker.com/free-api?countryTotal=US";
@@ -23,6 +28,9 @@ const Country = (props) => {
       .then((r) => {
         setCountryCases(r.countrydata[0].total_cases);
         setCountryDeaths(r.countrydata[0].total_deaths);
+        setRecovered(r.countrydata[0].total_recovered);
+        setNewCases(r.countrydata[0].total_new_cases_today);
+        setNewDeaths(r.countrydata[0].total_new_deaths_today);
       });
   };
 
@@ -39,6 +47,14 @@ const Country = (props) => {
     getCasesByCountry();
   }, []);
 
+  const showMore = () => {
+    setDetailView(true);
+  };
+
+  const showLess = () => {
+    setDetailView(false);
+  };
+
   if (loading) {
     return (
       <View style={{ flex: 1 }}>
@@ -53,8 +69,39 @@ const Country = (props) => {
   } else {
     return (
       <View style={{ flex: 1 }}>
+        <Modal
+          isVisible={detailView}
+          transparent={true}
+          onBackdropPress={showLess}
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+        >
+          <View style={styles.modal}>
+            <Text style={styles.detailText}>
+              Total Cases:{" "}
+              {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Total Deaths:{" "}
+              {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Total Recoveries:{" "}
+              {recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Cases Today:{" "}
+              {newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Deaths Today:{" "}
+              {newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
+          </View>
+        </Modal>
         <Card style={styles.countryCard}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showMore}>
             <Text style={styles.title}>America:</Text>
             <Text style={styles.numbers}>
               {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -93,6 +140,27 @@ const styles = StyleSheet.create({
   loader: {
     flex: 1,
     justifyContent: "center",
+  },
+  modal: {
+    flex: 1,
+    marginVertical: "33%",
+    marginHorizontal: "10%",
+    borderRadius: RFValue(20),
+    backgroundColor: "rgb(124,226,232)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  detailText: {
+    fontSize: RFValue(18),
+    alignSelf: "flex-start",
+    paddingLeft: RFValue(10),
+    paddingVertical: RFValue(10),
+  },
+  detailTextSmall: {
+    position: "absolute",
+    top: RFValue(475),
+    fontSize: RFValue(10),
+    justifyContent: "flex-end",
   },
 });
 

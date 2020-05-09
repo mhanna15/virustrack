@@ -5,10 +5,11 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
-  Modal,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import Modal from "react-native-modal";
 
 import Card from "./Card";
 
@@ -17,6 +18,10 @@ const Global = (props) => {
   const [globalDeaths, setGlobalDeaths] = useState("");
   const [loading, setLoading] = useState(true);
   const [detailView, setDetailView] = useState(false);
+  const [recovered, setRecovered] = useState("");
+  const [newCases, setNewCases] = useState("");
+  const [newDeaths, setNewDeaths] = useState("");
+  const [affectedCountries, setAffectedCountries] = useState("");
 
   const getCasesGlobally = () => {
     const url = "https://api.thevirustracker.com/free-api?global=stats";
@@ -25,6 +30,10 @@ const Global = (props) => {
       .then((r) => {
         setGlobalCases(r.results[0].total_cases);
         setGlobalDeaths(r.results[0].total_deaths);
+        setRecovered(r.results[0].total_recovered);
+        setNewCases(r.results[0].total_new_cases_today);
+        setNewDeaths(r.results[0].total_new_deaths_today);
+        setAffectedCountries(r.results[0].total_affected_countries);
       });
   };
 
@@ -45,6 +54,10 @@ const Global = (props) => {
     setDetailView(true);
   };
 
+  const showLess = () => {
+    setDetailView(false);
+  };
+
   if (loading) {
     return (
       <View style={{ flex: 1 }}>
@@ -59,11 +72,40 @@ const Global = (props) => {
   } else {
     return (
       <View style={{ flex: 1 }}>
-        {/* <Modal visible={detailView}>
-            <View style={styles.detailed}>
-              <Text>HEllo</Text>
-            </View>
-          </Modal> */}
+        <Modal
+          isVisible={detailView}
+          transparent={true}
+          onBackdropPress={showLess}
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+        >
+          <View style={styles.modal}>
+            <Text style={styles.detailText}>
+              Total Cases:{" "}
+              {globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Total Deaths:{" "}
+              {globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Total Recoveries:{" "}
+              {recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Cases Today:{" "}
+              {newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Deaths Today:{" "}
+              {newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </Text>
+            <Text style={styles.detailText}>
+              Total Affected Counties: {affectedCountries}
+            </Text>
+            <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
+          </View>
+        </Modal>
 
         <Card style={styles.globalCard}>
           <TouchableOpacity onPress={showMore}>
@@ -95,7 +137,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: RFValue(25),
     paddingTop: RFPercentage(5),
-
   },
   things: {
     justifyContent: "center",
@@ -104,14 +145,28 @@ const styles = StyleSheet.create({
   },
   loader: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
-  detailed: {
+  modal: {
     flex: 1,
-    marginVertical: "40%",
-    backgroundColor: "red",
+    marginVertical: "30%",
+    marginHorizontal: "10%",
+    borderRadius: RFValue(20),
+    backgroundColor: "rgb(124,226,232)",
     alignItems: "center",
     justifyContent: "center",
+  },
+  detailText: {
+    fontSize: RFValue(18),
+    alignSelf: "flex-start",
+    paddingLeft: RFValue(10),
+    paddingVertical: RFValue(10),
+  },
+  detailTextSmall: {
+    position: "absolute",
+    top: RFValue(500),
+    fontSize: RFValue(10),
+    justifyContent: "flex-end",
   },
 });
 
