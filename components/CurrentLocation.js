@@ -96,44 +96,6 @@ const CurrentLocation = (props) => {
 
   Geocoder.init("AIzaSyBcd6WBxVxSf7CZmjs649VaaLxBbaQaJZM");
 
-  // const findLocationAndCasesByZip = () => {
-  //   navigator.geolocation.getCurrentPosition(
-  //     (position) => {
-  //       setLocationStatus(true);
-  //       const lat = position.coords.latitude;
-  //       const long = position.coords.longitude;
-  //       Geocoder.from({
-  //         latitude: lat,
-  //         longitude: long,
-  //       }).then((r) => {
-  //         gettingCountyCases(
-  //           r.results[0].address_components.filter(
-  //             (d) => d.types[d.types.indexOf("postal_code")]
-  //           )[0].long_name
-  //         );
-  //       });
-  //     },
-  //     (error) => setLocationStatus(false),
-  //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-  //   );
-  // };
-
-  // const gettingCountyCases = (zipCode) => {
-  //   const url = `https://covid-hotline-bling.herokuapp.com/zipcode/${zipCode}`;
-  //   fetch(url)
-  //     .then((r) => r.json())
-  //     .then((r) => {
-  //       if (r.cases == undefined || r.deaths == undefined) {
-  //         setCountyCases("Err");
-  //         setCountyDeaths("Err");
-  //         Alert.alert("try entering another zip code near you");
-  //       } else {
-  //         setCountyCases(r.cases);
-  //         setCountyDeaths(r.deaths);
-  //       }
-  //     });
-  // };
-
   const findLocationAndCasesByZip = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
