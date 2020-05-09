@@ -22,14 +22,6 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 export default function App() {
   const [searchLoading, setSearchLoading] = useState(false);
 
-  // if (searchLoading) {
-  //   return (
-  //     <View style={styles.loader}>
-  //       <ActivityIndicator size='large'/>
-  //     </View>
-  //   )
-  // }
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.screen}>
