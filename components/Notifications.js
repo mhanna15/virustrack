@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   screen: {
     backgroundColor: "#d1ff74",
     flex: 0.08,
-    marginTop: -90,
+    marginTop: -70,
   },
   button: {
     alignItems: "center",

@@ -7,6 +7,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 
+import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+
 import Card from "./Card";
 
 const Country = (props) => {
@@ -72,16 +74,16 @@ const Country = (props) => {
 const styles = StyleSheet.create({
   countryCard: {
     backgroundColor: "#24e9ff",
+    maxWidth: "100%",
   },
   title: {
-    fontSize: 35,
+    fontSize: RFValue(30),
     alignSelf: "center",
-    paddingHorizontal: 6,
   },
   numbers: {
     alignSelf: "center",
-    fontSize: 30,
-    paddingTop: 45,
+    fontSize: RFValue(25),
+    paddingTop: RFPercentage(5),
   },
   things: {
     justifyContent: "center",
@@ -89,7 +91,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   loader: {
-    paddingTop: "100%",
+    flex: 1,
+    justifyContent: "center",
   },
 });
 

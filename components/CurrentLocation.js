@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import Geocoder from "react-native-geocoding";
+import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
 
 import Card from "./Card";
 
@@ -190,13 +191,15 @@ const CurrentLocation = (props) => {
     );
   } else {
     return (
-      <TouchableOpacity>
-        <Card style={styles.currentCard}>
-          <View style={styles.location}>
-            <Button title="enable location" onPress={handleEnableLocation} />
-          </View>
+      <View style={{ flex: 1 }}>
+        <Card style={styles.locationCard}>
+          <TouchableOpacity>
+            <View style={styles.location}>
+              <Button title="enable location" onPress={handleEnableLocation} />
+            </View>
+          </TouchableOpacity>
         </Card>
-      </TouchableOpacity>
+      </View>
     );
   }
 };
@@ -204,10 +207,10 @@ const CurrentLocation = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    maxHeight: 80,
   },
   title: {
-    fontSize: 35,
+    fontSize: RFValue(30),
+    alignSelf: "center",
   },
   things: {
     justifyContent: "center",
@@ -216,18 +219,25 @@ const styles = StyleSheet.create({
   },
   currentCard: {
     backgroundColor: "#ffe367",
+    maxWidth: "100%",
+  },
+  locationCard: {
+    backgroundColor: "#ffe367",
+    maxWidth: "100%",
+    justifyContent: "center",
   },
   numbers: {
     alignSelf: "center",
-    fontSize: 30,
-    paddingTop: 45,
+    fontSize: RFValue(25),
+    paddingTop: RFPercentage(5),
   },
   loader: {
-    paddingTop: "100%",
+    flex: 1,
+    justifyContent: "center",
   },
   location: {
-    flex: 1,
-    paddingTop: "90%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

@@ -1,6 +1,9 @@
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
+import { RFPercentage } from "react-native-responsive-fontsize";
+
+
 const Header = (props) => {
   return (
     <View style={styles.screen}>
@@ -14,11 +17,11 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    maxHeight: 90,
+    maxHeight: "8%",
   },
   top: {
-    marginTop: 30,
-    padding: 15,
+    flex: 1,
+    marginTop: RFPercentage(3),
     marginHorizontal: 20,
     justifyContent: "center",
     alignItems: "center",

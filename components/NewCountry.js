@@ -11,12 +11,9 @@ const NewCountry = (props) => {
   return (
     <View style={styles.screen}>
       <Card>
-        <Icon
-          name="plus"
-          type="font-awesome-5"
-          onPress={notSupported}
-          style={styles.button}
-        />
+        <View style={styles.button}>
+          <Icon name="plus" type="font-awesome-5" onPress={notSupported} />
+        </View>
       </Card>
     </View>
   );
@@ -27,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    paddingTop: "80%",
+    flex: 1,
     alignSelf: "center",
     justifyContent: "center",
   },

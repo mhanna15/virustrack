@@ -8,6 +8,8 @@ import {
   Alert,
 } from "react-native";
 
+import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+
 const Search = (props) => {
   const [zip, setZip] = useState("");
   const [text, setText] = useState("");
@@ -61,7 +63,7 @@ const Search = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    maxHeight: 50,
+    maxHeight: RFValue(55),
   },
   input: {
     backgroundColor: "white",

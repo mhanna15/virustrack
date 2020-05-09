@@ -5,7 +5,10 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
+  Modal,
 } from "react-native";
+
+import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
 
 import Card from "./Card";
 
@@ -13,6 +16,7 @@ const Global = (props) => {
   const [globalCases, setGlobalCases] = useState("");
   const [globalDeaths, setGlobalDeaths] = useState("");
   const [loading, setLoading] = useState(true);
+  const [detailView, setDetailView] = useState(false);
 
   const getCasesGlobally = () => {
     const url = "https://api.thevirustracker.com/free-api?global=stats";
@@ -37,6 +41,10 @@ const Global = (props) => {
     getCasesGlobally();
   }, []);
 
+  const showMore = () => {
+    setDetailView(true);
+  };
+
   if (loading) {
     return (
       <View style={{ flex: 1 }}>
@@ -51,8 +59,14 @@ const Global = (props) => {
   } else {
     return (
       <View style={{ flex: 1 }}>
+        {/* <Modal visible={detailView}>
+            <View style={styles.detailed}>
+              <Text>HEllo</Text>
+            </View>
+          </Modal> */}
+
         <Card style={styles.globalCard}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showMore}>
             <Text style={styles.title}>Global:</Text>
             <Text style={styles.numbers}>
               {globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -74,14 +88,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#1fffc0",
   },
   title: {
-    fontSize: 35,
+    fontSize: RFValue(30),
     alignSelf: "center",
-    paddingHorizontal: 17,
   },
   numbers: {
     alignSelf: "center",
-    fontSize: 30,
-    paddingTop: 45,
+    fontSize: RFValue(25),
+    paddingTop: RFPercentage(5),
+
   },
   things: {
     justifyContent: "center",
@@ -89,7 +103,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   loader: {
-    paddingTop: "100%",
+    flex: 1,
+    justifyContent: "center"
+  },
+  detailed: {
+    flex: 1,
+    marginVertical: "40%",
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
