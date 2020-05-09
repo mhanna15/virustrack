@@ -8,6 +8,7 @@ import {
   Linking,
   ActivityIndicator,
   Alert,
+  AppState,
 } from "react-native";
 
 import Geocoder from "react-native-geocoding";
@@ -25,6 +26,7 @@ const CurrentLocation = (props) => {
   const findLocationAndCasesByZip = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        setLocationStatus(true);
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
         Geocoder.from({
@@ -61,6 +63,9 @@ const CurrentLocation = (props) => {
 
   const handleEnableLocation = () => {
     Linking.openSettings();
+    setTimeout(() => {
+      AppState.addEventListener("change", findLocationAndCasesByZip);
+    }, 2000);
   };
 
   const mounted = useRef();
@@ -101,9 +106,6 @@ const CurrentLocation = (props) => {
               {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Deaths</Text>
-            <View style={styles.loader}>
-              <ActivityIndicator size="large" />
-            </View>
           </TouchableOpacity>
         </Card>
       </View>
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
   },
   location: {
     flex: 1,
-    paddingTop: '90%'
+    paddingTop: "90%",
   },
 });
 
