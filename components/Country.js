@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   detailTextSmall: {
     position: "absolute",
-    top: RFValue(475),
+    bottom: RFValue(20),
     fontSize: RFValue(10),
     justifyContent: "flex-end",
   },

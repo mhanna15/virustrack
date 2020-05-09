@@ -286,10 +286,10 @@ const styles = StyleSheet.create({
     paddingVertical: RFValue(10),
   },
   detailTextSmall: {
+    flex: 1,
     position: "absolute",
-    top: RFValue(440),
+    bottom: RFValue(20),
     fontSize: RFValue(10),
-    justifyContent: "flex-end",
   },
 });
 
