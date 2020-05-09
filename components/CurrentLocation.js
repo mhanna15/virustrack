@@ -155,8 +155,6 @@ const CurrentLocation = (props) => {
         var county = r.results[0].locations[0].adminArea4;
         var state = r.results[0].locations[0].adminArea3;
         state = abbrState(state, "name");
-        console.log(county);
-        console.log(state);
         gettingCountyCases(county, state);
       });
   };
