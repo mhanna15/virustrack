@@ -19,7 +19,7 @@ const Global = (props) => {
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
-        setGlobalCases(r.results[0].total_active_cases);
+        setGlobalCases(r.results[0].total_cases);
         setGlobalDeaths(r.results[0].total_deaths);
       });
   };

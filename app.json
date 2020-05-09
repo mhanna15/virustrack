@@ -2,12 +2,13 @@
   "expo": {
     "name": "virustrack",
     "slug": "virustrack",
+    "privacy": "unlisted",
     "platforms": [
       "ios"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/virustrack.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -20,7 +21,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.minahanna.virustrack"
     }
   }
 }

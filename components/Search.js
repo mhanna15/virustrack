@@ -24,11 +24,11 @@ const Search = (props) => {
       .then((r) => {
         props.setSearchLoading(false);
         if (r.cases == undefined || r.deaths == undefined) {
-          Alert.alert("please try another zip code");
+          setTimeout(() =>Alert.alert("please try another zip code"), 40);
         } else {
-          Alert.alert(
+          setTimeout(() =>Alert.alert(
             `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
-          );
+          ), 40);
         }
       });
     setText("");
