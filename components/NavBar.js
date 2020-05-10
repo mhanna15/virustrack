@@ -6,11 +6,9 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 const NavBar = (props) => {
   const handleHomeClick = () => {
-    setTimeout(() => {
-      props.setNotifications(false);
-      props.setDonate(false);
-      props.setNews(false);
-    }, 200);
+    props.setNotifications(false);
+    props.setDonate(false);
+    props.setNews(false);
   };
 
   const handleNewsClick = () => {
