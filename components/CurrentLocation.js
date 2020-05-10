@@ -99,49 +99,58 @@ const CurrentLocation = (props) => {
 
   Geocoder.init("AIzaSyBcd6WBxVxSf7CZmjs649VaaLxBbaQaJZM");
 
-  const findLocationAndCasesByZip = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocationStatus(true);
-        const lat = position.coords.latitude;
-        const long = position.coords.longitude;
-        reverseGeocode(lat, long);
-      },
-      (error) => setLocationStatus(false),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-  };
+  // const findLocationAndCasesByZip = () => {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       setLocationStatus(true);
+  //       const lat = position.coords.latitude;
+  //       const long = position.coords.longitude;
+  //       reverseGeocode(lat, long);
+  //     },
+  //     (error) => setLocationStatus(false),
+  //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+  //   );
+  // };
+   const findLocationAndCasesByZip = () => {
+     setCounty("Orange County");
+     setCountyCases(
+       "25"
+     );
+     setCountyDeaths(
+       "30"
+     );
+   }
 
-  const reverseGeocode = (lat, long) => {
-    const url = `http://www.mapquestapi.com/geocoding/v1/reverse?key=WPHoEAbXcaStq9DMisav8kZhp0pXOMcx&location=${lat},${long}`;
-    fetch(url)
-      .then((r) => r.json())
-      .then((r) => {
-        var county = r.results[0].locations[0].adminArea4;
-        setCounty(county);
-        var state = r.results[0].locations[0].adminArea3;
-        state = abbrState(state, "name");
-        gettingCountyCases(county, state);
-      });
-  };
+  // const reverseGeocode = (lat, long) => {
+  //   const url = `http://www.mapquestapi.com/geocoding/v1/reverse?key=WPHoEAbXcaStq9DMisav8kZhp0pXOMcx&location=${lat},${long}`;
+  //   fetch(url)
+  //     .then((r) => r.json())
+  //     .then((r) => {
+  //       var county = r.results[0].locations[0].adminArea4;
+  //       setCounty(county);
+  //       var state = r.results[0].locations[0].adminArea3;
+  //       state = abbrState(state, "name");
+  //       gettingCountyCases(county, state);
+  //     });
+  // };
 
-  const gettingCountyCases = (inputCounty, inputState) => {
-    const url = `https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs`;
-    fetch(url)
-      .then((r) => r.json())
-      .then((r) => {
-        setCountyCases(
-          r.locations.filter(
-            (d) => d.county == inputCounty && d.province == inputState
-          )[0].latest.confirmed
-        );
-        setCountyDeaths(
-          r.locations.filter(
-            (d) => d.county == inputCounty && d.province == inputState
-          )[0].latest.deaths
-        );
-      });
-  };
+  // const gettingCountyCases = (inputCounty, inputState) => {
+  //   const url = `https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs`;
+  //   fetch(url)
+  //     .then((r) => r.json())
+  //     .then((r) => {
+  //       setCountyCases(
+  //         r.locations.filter(
+  //           (d) => d.county == inputCounty && d.province == inputState
+  //         )[0].latest.confirmed
+  //       );
+  //       setCountyDeaths(
+  //         r.locations.filter(
+  //           (d) => d.county == inputCounty && d.province == inputState
+  //         )[0].latest.deaths
+  //       );
+  //     });
+  // };
 
   const handleEnableLocation = () => {
     Linking.openSettings();

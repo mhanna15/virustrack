@@ -23,19 +23,28 @@ const Global = (props) => {
   const [newDeaths, setNewDeaths] = useState("");
   const [affectedCountries, setAffectedCountries] = useState("");
 
+  // const getCasesGlobally = () => {
+  //   const url = "https://api.thevirustracker.com/free-api?global=stats";
+  //   fetch(url)
+  //     .then((r) => r.json())
+  //     .then((r) => {
+  //       setGlobalCases(r.results[0].total_cases);
+  //       setGlobalDeaths(r.results[0].total_deaths);
+  //       setRecovered(r.results[0].total_recovered);
+  //       setNewCases(r.results[0].total_new_cases_today);
+  //       setNewDeaths(r.results[0].total_new_deaths_today);
+  //       setAffectedCountries(r.results[0].total_affected_countries);
+  //     });
+  // };
+
   const getCasesGlobally = () => {
-    const url = "https://api.thevirustracker.com/free-api?global=stats";
-    fetch(url)
-      .then((r) => r.json())
-      .then((r) => {
-        setGlobalCases(r.results[0].total_cases);
-        setGlobalDeaths(r.results[0].total_deaths);
-        setRecovered(r.results[0].total_recovered);
-        setNewCases(r.results[0].total_new_cases_today);
-        setNewDeaths(r.results[0].total_new_deaths_today);
-        setAffectedCountries(r.results[0].total_affected_countries);
-      });
-  };
+    setGlobalCases("3000000");
+    setGlobalDeaths("4347394");
+    setRecovered("4347394");
+    setNewCases("4347394");
+    setNewDeaths("4347394");
+    setAffectedCountries("4347394");
+  }
 
   const mounted = useRef();
   useEffect(() => {

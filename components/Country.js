@@ -21,19 +21,27 @@ const Country = (props) => {
   const [newCases, setNewCases] = useState("");
   const [newDeaths, setNewDeaths] = useState("");
 
+  // const getCasesByCountry = () => {
+  //   const url = "https://api.thevirustracker.com/free-api?countryTotal=US";
+  //   fetch(url)
+  //     .then((r) => r.json())
+  //     .then((r) => {
+  //       setCountryCases(r.countrydata[0].total_cases);
+  //       setCountryDeaths(r.countrydata[0].total_deaths);
+  //       setRecovered(r.countrydata[0].total_recovered);
+  //       setNewCases(r.countrydata[0].total_new_cases_today);
+  //       setNewDeaths(r.countrydata[0].total_new_deaths_today);
+  //     });
+  //     console.log("hello")
+  // };
+
   const getCasesByCountry = () => {
-    const url = "https://api.thevirustracker.com/free-api?countryTotal=US";
-    fetch(url)
-      .then((r) => r.json())
-      .then((r) => {
-        setCountryCases(r.countrydata[0].total_cases);
-        setCountryDeaths(r.countrydata[0].total_deaths);
-        setRecovered(r.countrydata[0].total_recovered);
-        setNewCases(r.countrydata[0].total_new_cases_today);
-        setNewDeaths(r.countrydata[0].total_new_deaths_today);
-      });
-      console.log("hello")
-  };
+        setCountryCases("2035885");
+        setCountryDeaths("2058385");
+        setRecovered("2035838");
+        setNewCases("2038385");
+        setNewDeaths("2058385");
+  }
 
   const mounted = useRef();
   useEffect(() => {

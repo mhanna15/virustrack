@@ -99,7 +99,7 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "#b8c4ff",
+    backgroundColor: "white",
   },
   row: {
     width: "100%",
