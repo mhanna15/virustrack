@@ -16,11 +16,17 @@ import Country from "./components/Country";
 import Global from "./components/Global";
 import NewCountry from "./components/NewCountry";
 import Notifications from "./components/Notifications";
+import News from "./components/News";
+import Donate from "./components/Donate";
+import NavBar from "./components/NavBar";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default function App() {
   const [searchLoading, setSearchLoading] = useState(false);
+  const [notifications, setNotifications] = useState(false);
+  const [news, setNews] = useState(false);
+  const [donate, setDonate] = useState(false);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -30,6 +36,36 @@ export default function App() {
         <Modal visible={searchLoading}>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
+          </View>
+        </Modal>
+        <Modal visible={notifications}>
+          <View style={styles.screen}>
+            <Notifications />
+            <NavBar
+              setNews={setNews}
+              setDonate={setDonate}
+              setNotifications={setNotifications}
+            />
+          </View>
+        </Modal>
+        <Modal visible={news}>
+          <View style={styles.screen}>
+            <News />
+            <NavBar
+              setNews={setNews}
+              setDonate={setDonate}
+              setNotifications={setNotifications}
+            />
+          </View>
+        </Modal>
+        <Modal visible={donate}>
+          <View style={styles.screen}>
+            <Donate />
+            <NavBar
+              setNews={setNews}
+              setDonate={setDonate}
+              setNotifications={setNotifications}
+            />
           </View>
         </Modal>
         <Grid>
@@ -50,7 +86,11 @@ export default function App() {
             </Row>
           </Col>
         </Grid>
-        <Notifications />
+        <NavBar
+          setNews={setNews}
+          setDonate={setDonate}
+          setNotifications={setNotifications}
+        />
       </View>
     </TouchableWithoutFeedback>
   );

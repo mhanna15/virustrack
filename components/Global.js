@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -48,7 +48,7 @@ const Global = (props) => {
 
   useEffect(() => {
     getCasesGlobally();
-  }, []);
+  }, [globalCases]);
 
   const showMore = () => {
     setDetailView(true);

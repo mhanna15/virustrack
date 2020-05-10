@@ -1,20 +1,20 @@
 import React from "react";
-import { Text, TouchableOpacity, Alert, View, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 
 import Header from "./Header";
 import Search from "./Search";
 
-const Notifications = () => {
+const Donate = (props) => {
   return (
     <View style={styles.screen}>
       <Header />
       <Search />
-      <Text>This is the notifications page</Text>
+      <Text>This is the donate page</Text>
     </View>
   );
 };
 
-export default Notifications;
+export default Donate;
 
 const styles = StyleSheet.create({
   screen: {

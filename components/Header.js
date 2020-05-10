@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1,
-    marginTop: RFPercentage(3),
+    marginTop: RFPercentage(4),
     marginHorizontal: 20,
     justifyContent: "center",
     alignItems: "center",

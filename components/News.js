@@ -1,20 +1,20 @@
 import React from "react";
-import { Text, TouchableOpacity, Alert, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 import Header from "./Header";
 import Search from "./Search";
 
-const Notifications = () => {
+const News = (props) => {
   return (
     <View style={styles.screen}>
       <Header />
       <Search />
-      <Text>This is the notifications page</Text>
+      <Text>This is the news page</Text>
     </View>
   );
 };
 
-export default Notifications;
+export default News;
 
 const styles = StyleSheet.create({
   screen: {

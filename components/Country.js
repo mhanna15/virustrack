@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   Text,
   TouchableOpacity,
@@ -32,6 +32,7 @@ const Country = (props) => {
         setNewCases(r.countrydata[0].total_new_cases_today);
         setNewDeaths(r.countrydata[0].total_new_deaths_today);
       });
+      console.log("hello")
   };
 
   const mounted = useRef();
