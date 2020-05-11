@@ -127,7 +127,7 @@ const Country = (props) => {
               {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Cases</Text>
-            <Divider style={{ backgroundColor: 'white', marginTop: "7.5%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
+            <Divider style={{ backgroundColor: 'white', marginTop: "7%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
             <Text style={styles.numbers}>
               {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontWeight: "bold",
     fontSize: RFValue(23),
-    paddingTop: RFPercentage(2),
+    paddingTop: RFPercentage(1),
   },
   things: {
     fontFamily:"Avenir",

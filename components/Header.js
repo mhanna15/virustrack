@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Image, } from "react-native";
 
 import { RFPercentage } from "react-native-responsive-fontsize";
 
@@ -8,7 +8,7 @@ const Header = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.top}>
-        <Text style={styles.title}>VirusTracker</Text>
+        <Text style = {{fontFamily:"Avenir", fontSize: "24", fontWeight: "bold", color:"black"}}>Pandemic Data</Text>
       </View>
     </View>
   );
@@ -17,14 +17,14 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    maxHeight: "8%",
+    maxHeight: "10%",
   },
   top: {
     flex: 1,
     marginTop: RFPercentage(4),
     marginHorizontal: 20,
-    justifyContent: "center",
     alignItems: "center",
+    
   },
   title: {
     fontSize: 25,

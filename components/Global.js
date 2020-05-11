@@ -10,6 +10,7 @@ import {
 
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
 import Modal from "react-native-modal";
+import { Divider } from 'react-native-elements';
 
 import Card from "./Card";
 
@@ -39,11 +40,11 @@ const Global = (props) => {
 
   const getCasesGlobally = () => {
     setGlobalCases("3000000");
-    setGlobalDeaths("4347394");
-    setRecovered("4347394");
-    setNewCases("4347394");
-    setNewDeaths("4347394");
-    setAffectedCountries("4347394");
+    setGlobalDeaths("6848649");
+    setRecovered("547545");
+    setNewCases("10567");
+    setNewDeaths("3086");
+    setAffectedCountries("79");
   }
 
   const mounted = useRef();
@@ -71,7 +72,7 @@ const Global = (props) => {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.globalCard}>
-          <Text style={styles.title}>Global:</Text>
+          <Text style={styles.title}>Global</Text>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
           </View>
@@ -89,40 +90,47 @@ const Global = (props) => {
           animationOut="fadeOut"
         >
           <View style={styles.modal}>
-            <Text style={styles.detailText}>
-              Total Cases:{" "}
-              {globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Total Deaths:{" "}
-              {globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Total Recoveries:{" "}
-              {recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Cases Today:{" "}
-              {newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Deaths Today:{" "}
-              {newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Total Affected Counties: {affectedCountries}
-            </Text>
+            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: "16", color: "white",}}>Global</Text>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Total Cases:</Text>
+              <Text style = {styles.numericText}>{globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Total Deaths:</Text>
+              <Text style = {styles.numericText}>{globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Total Recoveries:</Text>
+              <Text style = {styles.numericText}>{recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Cases Today:</Text>
+              <Text style = {styles.numericText}>{newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Deaths Today:</Text>
+              <Text style = {styles.numericText}>{newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Affected Countries:</Text>
+              <Text style = {styles.numericText}>{affectedCountries}</Text>
+            </View>
+
             <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
           </View>
+
+
+
         </Modal>
 
         <Card style={styles.globalCard}>
           <TouchableOpacity onPress={showMore}>
-            <Text style={styles.title}>Global:</Text>
+            <Text style={styles.title}>Global</Text>
             <Text style={styles.numbers}>
               {globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Cases</Text>
+            <Divider style={{ backgroundColor: 'white', marginTop: "7%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
             <Text style={styles.numbers}>
               {globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
@@ -136,23 +144,27 @@ const Global = (props) => {
 
 const styles = StyleSheet.create({
   globalCard: {
-    backgroundColor: "black",
+    backgroundColor: "#f09456",
   },
   title: {
-    fontSize: RFValue(30),
+    fontSize: RFValue(22),
+    fontFamily: "Avenir",
     color: "white",
-    alignSelf: "center",
+    marginLeft:"15%",
   },
   numbers: {
-    alignSelf: "center",
     color: "white",
-    fontSize: RFValue(25),
-    paddingTop: RFPercentage(5),
+    marginLeft:"15%",
+    fontFamily: "Avenir",
+    fontWeight: "bold",
+    fontSize: RFValue(23),
+    paddingTop: RFPercentage(1),
   },
   things: {
-    justifyContent: "center",
+    fontFamily:"Avenir",
+    marginTop: "1%",
+    marginLeft: "15%",
     color: "white",
-    alignSelf: "center",
     fontSize: 20,
   },
   loader: {
@@ -162,23 +174,43 @@ const styles = StyleSheet.create({
   modal: {
     flex: 1,
     marginVertical: "30%",
-    marginHorizontal: "10%",
-    borderRadius: RFValue(20),
-    backgroundColor: "rgb(124,226,232)",
+    marginHorizontal: "8%",
+    borderRadius: RFValue(14),
+    backgroundColor: "#f09456",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+  },
+  modalView: {
+    display: "flex", 
+    flexDirection:"row", 
+    justifyContent:"space-between", 
+    borderBottomWidth: 0.5, 
+    borderBottomColor: "white", 
+    width: "90%", 
+    marginLeft: "10%", 
+    marginRight: "10%",
+    marginBottom: "2%",
+  },
+  numericText: {
+    fontSize: RFValue(18),
+    paddingVertical: RFValue(10),
+    color: "white",
+    fontWeight: "bold",
   },
   detailText: {
     fontSize: RFValue(18),
     alignSelf: "flex-start",
-    paddingLeft: RFValue(10),
     paddingVertical: RFValue(10),
+    color: "white",
   },
   detailTextSmall: {
     position: "absolute",
-    bottom: RFValue(20),
-    fontSize: RFValue(10),
+    bottom: RFValue(5),
+    fontSize: RFValue(14),
     justifyContent: "flex-end",
+    marginTop: "3%",
+    marginBottom:"5%",
+    color: "white",
   },
 });
 
