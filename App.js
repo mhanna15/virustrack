@@ -107,11 +107,11 @@ const styles = StyleSheet.create({
   },
   col: {
     width: "50%",
-    height: "45%",
+    height: "46%",
   },
   loader: {
     flex: 1,
-    backgroundColor: "#b8c4ff",
+    backgroundColor: "#ebebeb",
     justifyContent: "center",
     alignItems: "center",
   },
