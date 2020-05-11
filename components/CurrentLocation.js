@@ -250,7 +250,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: RFValue(30),
-    alignSelf: "center",
+    // alignSelf: "center",
+    marginLeft: "15%",
+    
   },
   things: {
     justifyContent: "center",
@@ -258,11 +260,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   currentCard: {
-    backgroundColor: "#ffe367",
+    backgroundColor: "#60f745",
     maxWidth: "100%",
   },
   locationCard: {
-    backgroundColor: "#ffe367",
+    backgroundColor: "#60f745",
     maxWidth: "100%",
     justifyContent: "center",
   },
@@ -284,7 +286,7 @@ const styles = StyleSheet.create({
     marginVertical: "40%",
     marginHorizontal: "10%",
     borderRadius: RFValue(20),
-    backgroundColor: "rgb(124,226,232)",
+    backgroundColor: "#60f745",
     alignItems: "center",
     justifyContent: "center",
   },

@@ -8,6 +8,8 @@ import {
 } from "react-native";
 
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { Divider } from 'react-native-elements';
+
 import Modal from "react-native-modal";
 
 import Card from "./Card";
@@ -37,10 +39,10 @@ const Country = (props) => {
 
   const getCasesByCountry = () => {
         setCountryCases("2035885");
-        setCountryDeaths("2058385");
-        setRecovered("2035838");
-        setNewCases("2038385");
-        setNewDeaths("2058385");
+        setCountryDeaths("456");
+        setRecovered("166");
+        setNewCases("1666");
+        setNewDeaths("11");
   }
 
   const mounted = useRef();
@@ -68,7 +70,7 @@ const Country = (props) => {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.countryCard}>
-          <Text style={styles.title}>America:</Text>
+          <Text style={styles.title}>America</Text>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
           </View>
@@ -85,37 +87,47 @@ const Country = (props) => {
           animationIn="fadeIn"
           animationOut="fadeOut"
         >
-          <View style={styles.modal}>
-            <Text style={styles.detailText}>
-              Total Cases:{" "}
-              {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Total Deaths:{" "}
-              {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Total Recoveries:{" "}
-              {recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Cases Today:{" "}
-              {newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Deaths Today:{" "}
-              {newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
+          <View style={styles.modal} >
+
+            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: "16", color: "white",}}>America</Text>
+
+            
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Total Cases:</Text>
+              <Text style = {styles.numericText}>{countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Total Deaths:</Text>
+              <Text style = {styles.numericText}>{countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Total Recoveries:</Text>
+              <Text style = {styles.numericText}>{recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Cases Today:</Text>
+              <Text style = {styles.numericText}>{newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>Deaths Today:</Text>
+              <Text style = {styles.numericText}>{newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </View>
+
             <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
           </View>
         </Modal>
         <Card style={styles.countryCard}>
           <TouchableOpacity onPress={showMore}>
-            <Text style={styles.title}>America:</Text>
+            <Text style={styles.title}>America</Text>
             <Text style={styles.numbers}>
               {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Cases</Text>
+            <Divider style={{ backgroundColor: 'white', marginTop: "7.5%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
             <Text style={styles.numbers}>
               {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
@@ -129,21 +141,28 @@ const Country = (props) => {
 
 const styles = StyleSheet.create({
   countryCard: {
-    backgroundColor: "#24e9ff",
+    backgroundColor: "#8595ff",
     maxWidth: "100%",
   },
   title: {
-    fontSize: RFValue(30),
-    alignSelf: "center",
+    fontSize: RFValue(22),
+    fontFamily: "Avenir",
+    color: "white",
+    marginLeft:"15%",
   },
   numbers: {
-    alignSelf: "center",
-    fontSize: RFValue(25),
-    paddingTop: RFPercentage(5),
+    color: "white",
+    marginLeft:"15%",
+    fontFamily: "Avenir",
+    fontWeight: "bold",
+    fontSize: RFValue(23),
+    paddingTop: RFPercentage(2),
   },
   things: {
-    justifyContent: "center",
-    alignSelf: "center",
+    fontFamily:"Avenir",
+    marginTop: "1%",
+    marginLeft: "15%",
+    color: "white",
     fontSize: 20,
   },
   loader: {
@@ -152,24 +171,48 @@ const styles = StyleSheet.create({
   },
   modal: {
     flex: 1,
-    marginVertical: "33%",
-    marginHorizontal: "10%",
-    borderRadius: RFValue(20),
-    backgroundColor: "rgb(124,226,232)",
+    marginVertical: "30%",
+    marginHorizontal: "8%",
+    borderRadius: RFValue(14),
+    backgroundColor: "#8595ff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
   detailText: {
     fontSize: RFValue(18),
     alignSelf: "flex-start",
-    paddingLeft: RFValue(10),
+    // paddingLeft: RFValue(10),
     paddingVertical: RFValue(10),
+    color: "white",
+    // fontWeight: "bold",
+  },
+  modalView: {
+    display: "flex", 
+    flexDirection:"row", 
+    justifyContent:"space-between", 
+    borderBottomWidth: 0.5, 
+    borderBottomColor: "white", 
+    width: "90%", 
+    marginLeft: "10%", 
+    marginRight: "10%",
+    marginBottom: "2%",
+  },
+  numericText: {
+    fontSize: RFValue(18),
+    // alignSelf: "flex-start",
+    paddingVertical: RFValue(10),
+    color: "white",
+    fontWeight: "bold",
+    // marginRight:"3%",
   },
   detailTextSmall: {
     position: "absolute",
-    bottom: RFValue(20),
-    fontSize: RFValue(10),
+    bottom: RFValue(5),
+    fontSize: RFValue(14),
     justifyContent: "flex-end",
+    marginTop: "3%",
+    marginBottom:"5%",
+    color: "white",
   },
 });
 

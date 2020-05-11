@@ -136,19 +136,22 @@ const Global = (props) => {
 
 const styles = StyleSheet.create({
   globalCard: {
-    backgroundColor: "#1fffc0",
+    backgroundColor: "black",
   },
   title: {
     fontSize: RFValue(30),
+    color: "white",
     alignSelf: "center",
   },
   numbers: {
     alignSelf: "center",
+    color: "white",
     fontSize: RFValue(25),
     paddingTop: RFPercentage(5),
   },
   things: {
     justifyContent: "center",
+    color: "white",
     alignSelf: "center",
     fontSize: 20,
   },

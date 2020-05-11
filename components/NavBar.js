@@ -76,7 +76,7 @@ const NavBar = (props) => {
 const styles = StyleSheet.create({
   background: {
     flex: 0.1,
-    backgroundColor: "#9194ab",
+    backgroundColor: "white",
     marginTop: -70,
     flexDirection: "row",
     alignItems: "center",

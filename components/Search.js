@@ -47,7 +47,7 @@ const Search = (props) => {
       <View style={styles.screen}>
         <View style={styles.input}>
           <TextInput
-            placeholder="search for a specific zip code"
+            placeholder="Search by zipcode"
             maxLength={5}
             onChangeText={(text) => handleZipValidation(text)}
             onSubmitEditing={gettingCountyCases.bind(this, zip)}
