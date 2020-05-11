@@ -70,7 +70,7 @@ const NavBar = (props) => {
         </View>
 
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleNotificationsClick}>
+      <TouchableOpacity onPress={handleDonateClick}>
         <View style={styles.icon}>
           <Icon
             name="usd"

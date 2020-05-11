@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontWeight: "bold",
     fontSize: RFValue(23),
-    paddingTop: RFPercentage(1),
+    paddingTop: "10%",
   },
   things: {
     fontFamily:"Avenir",

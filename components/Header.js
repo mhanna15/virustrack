@@ -8,7 +8,7 @@ const Header = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.top}>
-        <Text style = {{fontFamily:"Avenir", fontSize: "24", fontWeight: "bold", color:"black"}}>Pandemic Data</Text>
+        <Text style = {{fontFamily:"Avenir", fontSize: "24", fontWeight: "bold", color:"black"}}>Virus Track</Text>
       </View>
     </View>
   );
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1,
-    marginTop: RFPercentage(4),
+    marginTop: RFPercentage(5),
     marginHorizontal: 20,
     alignItems: "center",
     
