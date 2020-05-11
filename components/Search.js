@@ -6,6 +6,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Image,
+  Text,
 } from "react-native";
 
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
@@ -45,15 +47,17 @@ const Search = (props) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.screen}>
-        <View style={styles.input}>
-          <TextInput
-            placeholder="search for a specific zip code"
-            maxLength={5}
-            onChangeText={(text) => handleZipValidation(text)}
-            onSubmitEditing={gettingCountyCases.bind(this, zip)}
-            returnKeyType="search"
-            value={text}
-          />
+        <View style = {{marginLeft: "3.5%", marginRight: "3.5%",display:"flex", flexDirection:"row" }}>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="Search by zipcode"
+              maxLength={5}
+              onChangeText={(text) => handleZipValidation(text)}
+              onSubmitEditing={gettingCountyCases.bind(this, zip)}
+              returnKeyType="search"
+              value={text}
+            />
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -64,13 +68,14 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     maxHeight: RFValue(55),
+    // backgroundColor:"red",
   },
   input: {
     backgroundColor: "white",
-    borderRadius: 10,
-    padding: 10,
-    width: "95%",
-    alignSelf: "center",
+    borderRadius: 20,
+    padding: "2.5%",
+    width: "100%",
+    marginBottom:"5%",
   },
 });
 

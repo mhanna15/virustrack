@@ -38,36 +38,44 @@ const NavBar = (props) => {
   return (
     <View style={styles.background}>
       <TouchableOpacity onPress={handleHomeClick}>
-        <Icon
-          name="home"
-          type="font-awesome"
-          style={styles.icon}
-          size={RFValue(30)}
-        />
+        <View style={styles.icon}>
+          <Icon
+            name="home"
+            type="font-awesome"
+            style={styles.icon}
+            size={RFValue(30)}
+          />
+        </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleNewsClick}>
-        <Icon
-          name="newspaper-o"
-          type="font-awesome"
-          style={styles.icon}
-          size={RFValue(30)}
-        />
+        <View style={styles.icon}>
+          <Icon
+            name="newspaper-o"
+            type="font-awesome"
+            style={styles.icon}
+            size={RFValue(30)}
+          />
+        </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleNotificationsClick}>
-        <Icon
-          name="bell"
-          type="font-awesome"
-          style={styles.icon}
-          size={RFValue(25)}
-        />
+        <View style={styles.icon}>
+          <Icon
+            name="bell"
+            type="font-awesome"
+            style={styles.icon}
+            size={RFValue(30)}
+          />
+        </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleDonateClick}>
-        <Icon
-          name="usd"
-          type="font-awesome"
-          style={styles.icon}
-          size={RFValue(25)}
-        />
+        <View style={styles.icon}>
+          <Icon
+            name="usd"
+            type="font-awesome"
+            style={styles.icon}
+            size={RFValue(30)}
+          />
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -76,14 +84,19 @@ const NavBar = (props) => {
 const styles = StyleSheet.create({
   background: {
     flex: 0.1,
-    backgroundColor: "#9194ab",
-    marginTop: -70,
+    backgroundColor: "white",
+    marginTop: -56,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   icon: {
-    paddingHorizontal: RFValue(33),
+    width: "100%",
+    paddingHorizontal: RFValue(15),
+    paddingVertical: RFValue(5),
+    borderRadius: 30,
   },
 });
 

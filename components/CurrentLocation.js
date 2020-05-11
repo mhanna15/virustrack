@@ -13,6 +13,7 @@ import {
 import Geocoder from "react-native-geocoding";
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
 import Modal from "react-native-modal";
+import { Divider } from 'react-native-elements';
 
 import Card from "./Card";
 
@@ -184,7 +185,7 @@ const CurrentLocation = (props) => {
     return (
       <View style={{ flex: 1 }}>
         <Card style={styles.currentCard}>
-          <Text style={styles.title}>Near you:</Text>
+          <Text style={styles.title}>Near you</Text>
           <View style={styles.loader}>
             <ActivityIndicator size="large" />
           </View>
@@ -202,25 +203,41 @@ const CurrentLocation = (props) => {
           animationOut="fadeOut"
         >
           <View style={styles.modal}>
-            <Text style={styles.detailText}>County: {county}</Text>
-            <Text style={styles.detailText}>
-              Total Cases:{" "}
-              {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
-            <Text style={styles.detailText}>
-              Total Deaths:{" "}
-              {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </Text>
+            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: "16", color: "white",}}>Near You</Text>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>County:</Text>
+              <Text style = {styles.numericText}>
+                {county}
+              </Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>
+                Total Cases:{" "}
+              </Text>
+              <Text style = {styles.numericText}>
+                {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
+            </View>
+            <View style = {styles.modalView}>
+              <Text style={styles.detailText}>
+                Total Deaths:{" "}
+              </Text>
+              <Text style = {styles.numericText}>
+                {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
+            </View>
             <Text style={styles.detailTextSmall}>Source: CSBS</Text>
           </View>
         </Modal>
         <Card style={styles.currentCard}>
           <TouchableOpacity onPress={showMore}>
-            <Text style={styles.title}>Near you:</Text>
+            <Text style={styles.title}>Near you</Text>
             <Text style={styles.numbers}>
               {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Cases</Text>
+            <Divider style={{ backgroundColor: 'white', marginTop: "7%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
+
             <Text style={styles.numbers}>
               {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
@@ -249,28 +266,36 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: RFValue(30),
-    alignSelf: "center",
+    fontSize: RFValue(22),
+    fontFamily: "Avenir",
+    color: "white",
+    marginLeft:"15%",
+  },
+  numbers: {
+    color: "white",
+    marginLeft:"15%",
+    fontFamily: "Avenir",
+    fontWeight: "bold",
+    fontSize: RFValue(23),
+    paddingTop: "10%",
   },
   things: {
-    justifyContent: "center",
-    alignSelf: "center",
+    fontFamily:"Avenir",
+    marginTop: "1%",
+    marginLeft: "15%",
+    color: "white",
     fontSize: 20,
   },
   currentCard: {
-    backgroundColor: "#ffe367",
+    backgroundColor: "#62d936",
     maxWidth: "100%",
   },
   locationCard: {
-    backgroundColor: "#ffe367",
+    backgroundColor: "#62d936",
     maxWidth: "100%",
     justifyContent: "center",
   },
-  numbers: {
-    alignSelf: "center",
-    fontSize: RFValue(25),
-    paddingTop: RFPercentage(5),
-  },
+
   loader: {
     flex: 1,
     justifyContent: "center",
@@ -281,24 +306,44 @@ const styles = StyleSheet.create({
   },
   modal: {
     flex: 1,
-    marginVertical: "40%",
-    marginHorizontal: "10%",
-    borderRadius: RFValue(20),
-    backgroundColor: "rgb(124,226,232)",
+    marginVertical: "30%",
+    marginHorizontal: "8%",
+    borderRadius: RFValue(14),
+    backgroundColor: "#62d936",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+  },
+  modalView: {
+    display: "flex", 
+    flexDirection:"row", 
+    justifyContent:"space-between", 
+    borderBottomWidth: 0.5, 
+    borderBottomColor: "white", 
+    width: "90%", 
+    marginLeft: "10%", 
+    marginRight: "10%",
+    marginBottom: "1%",
+  },
+  numericText: {
+    fontSize: RFValue(18),
+    paddingVertical: RFValue(10),
+    color: "white",
+    fontWeight: "bold",
   },
   detailText: {
     fontSize: RFValue(18),
     alignSelf: "flex-start",
-    paddingLeft: RFValue(10),
     paddingVertical: RFValue(10),
+    color: "white",
   },
   detailTextSmall: {
-    flex: 1,
     position: "absolute",
-    bottom: RFValue(20),
-    fontSize: RFValue(10),
+    bottom: RFValue(5),
+    fontSize: RFValue(14),
+    justifyContent: "flex-end",
+    marginTop: "3%",
+    marginBottom:"5%",
+    color: "white",
   },
 });
 
