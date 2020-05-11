@@ -46,7 +46,6 @@ const NavBar = (props) => {
             size={RFValue(30)}
           />
         </View>
-
       </TouchableOpacity>
       <TouchableOpacity onPress={handleNewsClick}>
         <View style={styles.icon}>
@@ -57,7 +56,6 @@ const NavBar = (props) => {
             size={RFValue(30)}
           />
         </View>
-
       </TouchableOpacity>
       <TouchableOpacity onPress={handleNotificationsClick}>
         <View style={styles.icon}>
@@ -68,7 +66,6 @@ const NavBar = (props) => {
             size={RFValue(30)}
           />
         </View>
-
       </TouchableOpacity>
       <TouchableOpacity onPress={handleDonateClick}>
         <View style={styles.icon}>
@@ -79,7 +76,6 @@ const NavBar = (props) => {
             size={RFValue(30)}
           />
         </View>
-
       </TouchableOpacity>
     </View>
   );
@@ -93,14 +89,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderTopRightRadius:20,
-    borderTopLeftRadius:20,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   icon: {
-    width:"100%",
-    paddingHorizontal: RFValue(18),
-    paddingVertical:RFValue(5),
-    borderRadius:30,
+    width: "100%",
+    paddingHorizontal: RFValue(15),
+    paddingVertical: RFValue(5),
+    borderRadius: 30,
   },
 });
 
