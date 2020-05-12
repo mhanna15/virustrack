@@ -10,7 +10,7 @@ const Header = (props) => {
         <Text
           style={{
             fontFamily: "Avenir",
-            fontSize: "24",
+            fontSize: 24,
             fontWeight: "bold",
             color: "black",
           }}

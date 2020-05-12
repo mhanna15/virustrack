@@ -21,6 +21,11 @@
       "**/*"
     ],
     "ios": {
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "fetch"
+        ]
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.minahanna.virustrack"
     }

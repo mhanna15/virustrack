@@ -90,7 +90,7 @@ const Global = (props) => {
           animationOut="fadeOut"
         >
           <View style={styles.modal}>
-            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: "16", color: "white",}}>Global</Text>
+            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: 16, color: "white",}}>Global</Text>
             <View style = {styles.modalView}>
               <Text style={styles.detailText}>Total Cases:</Text>
               <Text style = {styles.numericText}>{globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
