@@ -6,7 +6,7 @@ import Card from "./Card";
 
 const NewCountry = (props) => {
   const notSupported = () => {
-    Alert.alert("Sorry, this function is not yet supported");
+    Alert.alert("Coming soon!");
   };
   return (
     <View style={styles.screen}>
