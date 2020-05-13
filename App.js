@@ -21,34 +21,7 @@ import Donate from "./components/Donate";
 import NavBar from "./components/NavBar";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
-import * as BackgroundFetch from "expo-background-fetch";
-import * as TaskManager from "expo-task-manager";
 
-const myTask = () => {
-  try {
-    // fetch data here...
-    console.log("hello");
-    const backendData = "Simulated fetch " + Math.random();
-    console.log("myTask() ", backendData);
-    return backendData
-      ? BackgroundFetch.Result.NewData
-      : BackgroundFetch.Result.NoData;
-  } catch (err) {
-    return BackgroundFetch.Result.Failed;
-  }
-}
-
-try {
-  if (!TaskManager.isTaskDefined("myTaskName")) {
-    TaskManager.defineTask("myTaskName", myTask);
-  }
-  const options = {
-    minimumInterval: 5, // in seconds
-  };
-  BackgroundFetch.registerTaskAsync("myTaskName", options);
-} catch (err) {
-  console.log("registerTaskAsync() failed:", err);
-}
 
 export default function App() {
   const [searchLoading, setSearchLoading] = useState(false);
