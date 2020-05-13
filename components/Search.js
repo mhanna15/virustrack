@@ -18,7 +18,7 @@ const Search = (props) => {
 
   const gettingCountyCases = (zipCode) => {
     if (zip.length != 5) {
-      Alert.alert("please enter a 5 digit zip code");
+      Alert.alert("Please enter a 5 digit zip code");
       return;
     }
     props.setSearchLoading(true);
@@ -28,11 +28,25 @@ const Search = (props) => {
       .then((r) => {
         props.setSearchLoading(false);
         if (r.cases == undefined || r.deaths == undefined) {
-          setTimeout(() =>Alert.alert("please try another zip code"), 40);
+          setTimeout(() => Alert.alert("Sorry, please try another zip code nearby"), 40);
         } else {
-          setTimeout(() =>Alert.alert(
-            `there are currently ${r.cases} cases and ${r.deaths} deaths in area code ${zipCode}`
-          ), 40);
+          setTimeout(
+            () =>
+              Alert.alert(
+                `There are currently ${r.cases
+                  .toString()
+                  .replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ","
+                  )} cases and ${r.deaths
+                  .toString()
+                  .replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ","
+                  )} deaths in area code ${zipCode}`
+              ),
+            40
+          );
         }
       });
     setText("");
@@ -47,7 +61,14 @@ const Search = (props) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.screen}>
-        <View style = {{marginLeft: "3.5%", marginRight: "3.5%",display:"flex", flexDirection:"row" }}>
+        <View
+          style={{
+            marginLeft: "3.5%",
+            marginRight: "3.5%",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
           <View style={styles.input}>
             <TextInput
               placeholder="Search by zipcode"
@@ -75,7 +96,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: "2.5%",
     width: "100%",
-    marginBottom:"5%",
+    marginBottom: "5%",
   },
 });
 
