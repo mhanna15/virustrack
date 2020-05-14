@@ -9,6 +9,10 @@ import {
   Image,
 } from "react-native";
 
+import { Card, ListItem, Icon } from 'react-native-elements'
+import { Divider } from 'react-native-elements';
+
+
 import Header from "./Header";
 
 const News = (props) => {
@@ -164,14 +168,23 @@ const News = (props) => {
         <FlatList
           data={articles}
           renderItem={({ item }) => (
-            <View style={styles.text}>
-              <Image
-                source={{ uri: item.image_url }}
-                style={{ width: 50, height: 50 }}
-              />
-              <Text>{item.description}</Text>
-              <Text>Date: {item.date}</Text>
-              <Text onPress={() => Linking.openURL(item.url)}>Source</Text>
+            <View>
+              <View style={{display:"flex", flexDirection:"row",marginLeft:"3%", marginRight:"2%",}}>
+                <View style = {{width:"70%", height:"75%",}}>
+                  <View style = {{display:"flex", flexDirection:"row", marginBottom:"2%",}}>
+                    <Text>{item.date}</Text>
+                    <Text onPress={() => Linking.openURL(item.url)} style = {{fontStyle:"italic", marginLeft:"20%"}}>Source</Text>
+                  </View>
+                  
+                  <Text style = {{fontFamily:"Avenir", fontWeight:"bold", fontSize:"16" }} onPress={() => Linking.openURL(item.url)}>{item.description}</Text>
+                </View>
+
+                <Image
+                  source={{ uri: item.image_url }}
+                  style={{ width: 90, height: 90, borderRadius: "10", marginLeft:"3%", }}
+                />
+              </View>
+              <Divider style={{ backgroundColor: 'black',marginTop:"3%", marginBottom:"4%",marginLeft: "3%", marginRight: "4%", height: 1, }} />
             </View>
           )}
         />
@@ -187,7 +200,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    padding: 10,
+    display:"flex",
+    flexDirection:"row",
   },
   articles: {
     flex: 1,
