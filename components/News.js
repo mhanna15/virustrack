@@ -63,7 +63,7 @@ const News = (props) => {
     const year = newDate[0];
     const month = months[parseInt(newDate[1] - 1)];
     const day = newDate[2].substring(0, 2);
-    const returnDate = `${month}  ${day}, ${year}`;
+    const returnDate = `${month} ${day}, ${year}`;
     return returnDate;
   };
 
