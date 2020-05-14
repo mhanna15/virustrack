@@ -13,7 +13,7 @@ import {
 import Geocoder from "react-native-geocoding";
 import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
 import Modal from "react-native-modal";
-import { Divider } from 'react-native-elements';
+import { Divider } from "react-native-elements";
 
 import Card from "./Card";
 
@@ -100,58 +100,58 @@ const CurrentLocation = (props) => {
 
   Geocoder.init("AIzaSyBcd6WBxVxSf7CZmjs649VaaLxBbaQaJZM");
 
-  // const findLocationAndCasesByZip = () => {
-  //   navigator.geolocation.getCurrentPosition(
-  //     (position) => {
-  //       setLocationStatus(true);
-  //       const lat = position.coords.latitude;
-  //       const long = position.coords.longitude;
-  //       reverseGeocode(lat, long);
-  //     },
-  //     (error) => setLocationStatus(false),
-  //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-  //   );
-  // };
-   const findLocationAndCasesByZip = () => {
-     setCounty("Orange County");
-     setCountyCases(
-       "25"
-     );
-     setCountyDeaths(
-       "30"
-     );
-   }
+  const findLocationAndCasesByZip = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLocationStatus(true);
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        reverseGeocode(lat, long);
+      },
+      (error) => setLocationStatus(false),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
+  //  const findLocationAndCasesByZip = () => {
+  //    setCounty("Orange County");
+  //    setCountyCases(
+  //      "25"
+  //    );
+  //    setCountyDeaths(
+  //      "30"
+  //    );
+  //  }
 
-  // const reverseGeocode = (lat, long) => {
-  //   const url = `http://www.mapquestapi.com/geocoding/v1/reverse?key=WPHoEAbXcaStq9DMisav8kZhp0pXOMcx&location=${lat},${long}`;
-  //   fetch(url)
-  //     .then((r) => r.json())
-  //     .then((r) => {
-  //       var county = r.results[0].locations[0].adminArea4;
-  //       setCounty(county);
-  //       var state = r.results[0].locations[0].adminArea3;
-  //       state = abbrState(state, "name");
-  //       gettingCountyCases(county, state);
-  //     });
-  // };
+  const reverseGeocode = (lat, long) => {
+    const url = `http://www.mapquestapi.com/geocoding/v1/reverse?key=WPHoEAbXcaStq9DMisav8kZhp0pXOMcx&location=${lat},${long}`;
+    fetch(url)
+      .then((r) => r.json())
+      .then((r) => {
+        var county = r.results[0].locations[0].adminArea4;
+        setCounty(county);
+        var state = r.results[0].locations[0].adminArea3;
+        state = abbrState(state, "name");
+        gettingCountyCases(county, state);
+      });
+  };
 
-  // const gettingCountyCases = (inputCounty, inputState) => {
-  //   const url = `https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs`;
-  //   fetch(url)
-  //     .then((r) => r.json())
-  //     .then((r) => {
-  //       setCountyCases(
-  //         r.locations.filter(
-  //           (d) => d.county == inputCounty && d.province == inputState
-  //         )[0].latest.confirmed
-  //       );
-  //       setCountyDeaths(
-  //         r.locations.filter(
-  //           (d) => d.county == inputCounty && d.province == inputState
-  //         )[0].latest.deaths
-  //       );
-  //     });
-  // };
+  const gettingCountyCases = (inputCounty, inputState) => {
+    const url = `https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs`;
+    fetch(url)
+      .then((r) => r.json())
+      .then((r) => {
+        setCountyCases(
+          r.locations.filter(
+            (d) => d.county == inputCounty && d.province == inputState
+          )[0].latest.confirmed
+        );
+        setCountyDeaths(
+          r.locations.filter(
+            (d) => d.county == inputCounty && d.province == inputState
+          )[0].latest.deaths
+        );
+      });
+  };
 
   const handleEnableLocation = () => {
     Linking.openSettings();
@@ -203,26 +203,29 @@ const CurrentLocation = (props) => {
           animationOut="fadeOut"
         >
           <View style={styles.modal}>
-            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: 16, color: "white",}}>Near You</Text>
-            <View style = {styles.modalView}>
+            <Text
+              style={{
+                marginTop: "3%",
+                marginBottom: "3%",
+                fontSize: 16,
+                color: "white",
+              }}
+            >
+              Near You
+            </Text>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>County:</Text>
-              <Text style = {styles.numericText}>
-                {county}
-              </Text>
+              <Text style={styles.numericText}>{county}</Text>
             </View>
-            <View style = {styles.modalView}>
-              <Text style={styles.detailText}>
-                Total Cases:{" "}
-              </Text>
-              <Text style = {styles.numericText}>
+            <View style={styles.modalView}>
+              <Text style={styles.detailText}>Total Cases: </Text>
+              <Text style={styles.numericText}>
                 {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </Text>
             </View>
-            <View style = {styles.modalView}>
-              <Text style={styles.detailText}>
-                Total Deaths:{" "}
-              </Text>
-              <Text style = {styles.numericText}>
+            <View style={styles.modalView}>
+              <Text style={styles.detailText}>Total Deaths: </Text>
+              <Text style={styles.numericText}>
                 {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </Text>
             </View>
@@ -236,7 +239,15 @@ const CurrentLocation = (props) => {
               {countyCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Cases</Text>
-            <Divider style={{ backgroundColor: 'white', marginTop: "7%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
+            <Divider
+              style={{
+                backgroundColor: "white",
+                marginTop: "7%",
+                marginLeft: "15%",
+                marginRight: "15%",
+                height: 1,
+              }}
+            />
 
             <Text style={styles.numbers}>
               {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -269,18 +280,18 @@ const styles = StyleSheet.create({
     fontSize: RFValue(22),
     fontFamily: "Avenir",
     color: "white",
-    marginLeft:"15%",
+    marginLeft: "15%",
   },
   numbers: {
     color: "white",
-    marginLeft:"15%",
+    marginLeft: "15%",
     fontFamily: "Avenir",
     fontWeight: "bold",
     fontSize: RFValue(23),
     paddingTop: "10%",
   },
   things: {
-    fontFamily:"Avenir",
+    fontFamily: "Avenir",
     marginTop: "1%",
     marginLeft: "15%",
     color: "white",
@@ -314,13 +325,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   modalView: {
-    display: "flex", 
-    flexDirection:"row", 
-    justifyContent:"space-between", 
-    borderBottomWidth: 0.5, 
-    borderBottomColor: "white", 
-    width: "90%", 
-    marginLeft: "10%", 
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "white",
+    width: "90%",
+    marginLeft: "10%",
     marginRight: "10%",
     marginBottom: "1%",
   },
@@ -342,7 +353,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(14),
     justifyContent: "flex-end",
     marginTop: "3%",
-    marginBottom:"5%",
+    marginBottom: "5%",
     color: "white",
   },
 });
