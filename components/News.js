@@ -9,8 +9,11 @@ import {
   Image,
 } from "react-native";
 
-import { Card, ListItem, Icon } from 'react-native-elements'
+import { ListItem, Icon } from 'react-native-elements'
 import { Divider } from 'react-native-elements';
+
+import Card from "./Card";
+
 
 
 import Header from "./Header";
@@ -169,22 +172,22 @@ const News = (props) => {
           data={articles}
           renderItem={({ item }) => (
             <View>
-              <View style={{display:"flex", flexDirection:"row",marginLeft:"3%", marginRight:"2%",}}>
-                <View style = {{width:"70%", height:"75%",}}>
-                  <View style = {{display:"flex", flexDirection:"row", marginBottom:"2%",}}>
-                    <Text>{item.date}</Text>
-                    <Text onPress={() => Linking.openURL(item.url)} style = {{fontStyle:"italic", marginLeft:"20%"}}>Source</Text>
-                  </View>
-                  
-                  <Text style = {{fontFamily:"Avenir", fontWeight:"bold", fontSize:"16" }} onPress={() => Linking.openURL(item.url)}>{item.description}</Text>
+              <Card style = {{borderRadius:20, height:154,width:"94%", padding:20, marginBottom:"4%", marginLeft:"3%",}}>
+                <View style ={{display:"flex", flexDirection:"row", backgroundColor:"#e6e6e6", marginBottom:"2%",marginTop:"-1%",justifyContent:"space-between"}}>
+                  <Text onPress={() => Linking.openURL(item.url)} style = {{fontStyle:"italic"}}>Source</Text>
+                  <Text>{item.date}</Text>
                 </View>
-
-                <Image
-                  source={{ uri: item.image_url }}
-                  style={{ width: 90, height: 90, borderRadius: "10", marginLeft:"3%", }}
-                />
-              </View>
-              <Divider style={{ backgroundColor: 'black',marginTop:"3%", marginBottom:"4%",marginLeft: "3%", marginRight: "4%", height: 1, }} />
+                
+                <View style = {{display:"flex", flexDirection:"row",marginBottom:"2%",}}>
+                  <Text style = {{fontFamily:"Avenir", fontWeight:"bold", fontSize:"18",width:"70%",}} onPress={() => Linking.openURL(item.url)}>{item.description}</Text>
+                  <Image
+                    source={{ uri: item.image_url }}
+                    style={{ width: 90, height: 94, borderRadius: "10", marginLeft:"3%", }}
+                  />
+                </View>
+                
+              </Card>
+              {/* <Divider style={{ backgroundColor: 'black',marginTop:"3%", marginBottom:"4%",marginLeft: "3%", marginRight: "3%", height: 1, }} /> */}
             </View>
           )}
         />
@@ -205,6 +208,6 @@ const styles = StyleSheet.create({
   },
   articles: {
     flex: 1,
-    marginBottom: 60,
+    // marginBottom: 60,
   },
 });

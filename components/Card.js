@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     marginLeft: "7.5%",
     width: "85%",
     height: "90%",
+    marginRight:"7.5%"
   },
 });
 
