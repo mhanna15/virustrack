@@ -12,88 +12,80 @@ import {
 import Header from "./components/Header";
 import CurrentLocation from "./components/CurrentLocation";
 import Search from "./components/Search";
-import Country from "./components/Country";
+import UnitedStates from "./components/UnitedStates";
 import Global from "./components/Global";
-import NewCountry from "./components/NewCountry";
-import Notifications from "./components/Notifications";
 import News from "./components/News";
-import Donate from "./components/Donate";
 import NavBar from "./components/NavBar";
+import Countries from "./components/Countries";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 
-
 export default function App() {
   const [searchLoading, setSearchLoading] = useState(false);
-  const [notifications, setNotifications] = useState(false);
   const [news, setNews] = useState(false);
-  const [donate, setDonate] = useState(false);
+  const [countries, setCountries] = useState(false);
+  const [home, setHome] = useState(true);
+
+  
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.screen}>
-        <Header />
-        <Search setSearchLoading={setSearchLoading} />
-        <Modal visible={searchLoading}>
-          <View style={styles.loader}>
-            <ActivityIndicator size="large" />
-          </View>
-        </Modal>
-        <Modal visible={notifications}>
+    <View>
+      <Modal visible={home}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.screen}>
-            <Notifications />
-            <NavBar
-              setNews={setNews}
-              setDonate={setDonate}
-              setNotifications={setNotifications}
-            />
+            <Header />
+            <Search setSearchLoading={setSearchLoading} />
+            <Modal visible={searchLoading}>
+              <View style={styles.loader}>
+                <ActivityIndicator size="large" />
+              </View>
+            </Modal>
+            <Grid>
+              <Col style={styles.col}>
+                <Row style={styles.row}>
+                  <CurrentLocation />
+                </Row>
+                <Row style={styles.row}>
+                  <UnitedStates />
+                </Row>
+              </Col>
+              <Col style={styles.col}>
+                <Row style={styles.row}>
+                  <Global />
+                </Row>
+                <Row style={styles.row}></Row>
+              </Col>
+            </Grid>
           </View>
-        </Modal>
-        <Modal visible={news}>
-          <View style={styles.screen}>
-            <News />
-            <NavBar
-              setNews={setNews}
-              setDonate={setDonate}
-              setNotifications={setNotifications}
-            />
-          </View>
-        </Modal>
-        <Modal visible={donate}>
-          <View style={styles.screen}>
-            <Donate />
-            <NavBar
-              setNews={setNews}
-              setDonate={setDonate}
-              setNotifications={setNotifications}
-            />
-          </View>
-        </Modal>
-        <Grid>
-          <Col style={styles.col}>
-            <Row style={styles.row}>
-              <CurrentLocation />
-            </Row>
-            <Row style={styles.row}>
-              <Country />
-            </Row>
-          </Col>
-          <Col style={styles.col}>
-            <Row style={styles.row}>
-              <Global />
-            </Row>
-            <Row style={styles.row}>
-              <NewCountry />
-            </Row>
-          </Col>
-        </Grid>
+        </TouchableWithoutFeedback>
         <NavBar
           setNews={setNews}
-          setDonate={setDonate}
-          setNotifications={setNotifications}
+          setCountries={setCountries}
+          setHome={setHome}
         />
-      </View>
-    </TouchableWithoutFeedback>
+      </Modal>
+
+      <Modal visible={news}>
+        <View style={styles.screen}>
+          <News />
+          <NavBar
+            setNews={setNews}
+            setCountries={setCountries}
+            setHome={setHome}
+          />
+        </View>
+      </Modal>
+      <Modal visible={countries}>
+        <View style={styles.screen}>
+          <Countries />
+          <NavBar
+            setNews={setNews}
+            setCountries={setCountries}
+            setHome={setHome}
+          />
+        </View>
+      </Modal>
+    </View>
   );
 }
 

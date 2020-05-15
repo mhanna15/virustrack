@@ -6,34 +6,22 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 const NavBar = (props) => {
   const handleHomeClick = () => {
-    // props.setNotifications(false);
-    // props.setDonate(false);
+    props.setHome(true)
     props.setNews(false);
+    props.setCountries(false);
   };
 
   const handleNewsClick = () => {
+    props.setHome(false)
     props.setNews(true);
-    // setTimeout(() => {
-    //   props.setNotifications(false);
-    //   props.setDonate(false);
-    // }, 200);
+    props.setCountries(false);
   };
 
-  // const handleNotificationsClick = () => {
-  //   props.setNotifications(true);
-  //   setTimeout(() => {
-  //     props.setDonate(false);
-  //     props.setNews(false);
-  //   }, 200);
-  // };
-
-  // const handleDonateClick = () => {
-  //   props.setDonate(true);
-  //   setTimeout(() => {
-  //     props.setNotifications(false);
-  //     props.setNews(false);
-  //   }, 200);
-  // };
+  const handleCountriesClick = () => {
+    props.setHome(false)
+    props.setNews(false);
+    props.setCountries(true);
+  };
 
   return (
     <View style={styles.background}>
@@ -43,7 +31,7 @@ const NavBar = (props) => {
             name="home"
             type="font-awesome"
             style={styles.icon}
-            size={RFValue(40)}
+            size={RFValue(35)}
           />
         </View>
       </TouchableOpacity>
@@ -53,20 +41,20 @@ const NavBar = (props) => {
             name="newspaper-o"
             type="font-awesome"
             style={styles.icon}
-            size={RFValue(40)}
+            size={RFValue(35)}
           />
         </View>
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={handleNotificationsClick}>
+      <TouchableOpacity onPress={handleCountriesClick}>
         <View style={styles.icon}>
           <Icon
-            name="bell"
+            name="globe"
             type="font-awesome"
             style={styles.icon}
-            size={RFValue(30)}
+            size={RFValue(35)}
           />
         </View>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       {/* <TouchableOpacity onPress={handleDonateClick}>
         <View style={styles.icon}>
           <Icon
@@ -90,11 +78,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    height: RFValue(75)
+    height: RFValue(75),
   },
   icon: {
     width: "100%",
-    paddingHorizontal: RFValue(30),
+    paddingHorizontal: RFValue(20),
     paddingVertical: RFValue(5),
     borderRadius: 30,
   },
