@@ -98,6 +98,7 @@ const News = (props) => {
         <View style={styles.articles}>
           <FlatList
             data={articles}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View>
                 <Card

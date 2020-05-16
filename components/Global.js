@@ -22,19 +22,17 @@ const Global = (props) => {
   const [recovered, setRecovered] = useState("");
   const [newCases, setNewCases] = useState("");
   const [newDeaths, setNewDeaths] = useState("");
-  const [affectedCountries, setAffectedCountries] = useState("");
 
   const getCasesGlobally = () => {
-    const url = "https://api.thevirustracker.com/free-api?global=stats";
+    const url = "https://api.covid19api.com/summary";
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
-        setGlobalCases(r.results[0].total_cases);
-        setGlobalDeaths(r.results[0].total_deaths);
-        setRecovered(r.results[0].total_recovered);
-        setNewCases(r.results[0].total_new_cases_today);
-        setNewDeaths(r.results[0].total_new_deaths_today);
-        setAffectedCountries(r.results[0].total_affected_countries);
+        setGlobalCases(r.Global.TotalConfirmed);
+        setGlobalDeaths(r.Global.TotalDeaths);
+        setRecovered(r.Global.TotalRecovered);
+        setNewCases(r.Global.NewConfirmed);
+        setNewDeaths(r.Global.NewDeaths);
       });
   };
 
@@ -44,7 +42,6 @@ const Global = (props) => {
   //   setRecovered("547545");
   //   setNewCases("10567");
   //   setNewDeaths("3086");
-  //   setAffectedCountries("79");
   // }
 
   const mounted = useRef();
@@ -111,12 +108,8 @@ const Global = (props) => {
               <Text style={styles.detailText}>Deaths Today:</Text>
               <Text style = {styles.numericText}>{newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
             </View>
-            <View style = {styles.modalView}>
-              <Text style={styles.detailText}>Affected Countries:</Text>
-              <Text style = {styles.numericText}>{affectedCountries}</Text>
-            </View>
 
-            <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
+            <Text style={styles.detailTextSmall}>Source: Johns Hopkins</Text>
           </View>
 
 

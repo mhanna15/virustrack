@@ -24,15 +24,17 @@ const Country = (props) => {
   const [newDeaths, setNewDeaths] = useState("");
 
   const getCasesByCountry = () => {
-    const url = "https://api.thevirustracker.com/free-api?countryTotal=US";
+    const url = "https://api.covid19api.com/summary";
     fetch(url)
       .then((r) => r.json())
       .then((r) => {
-        setCountryCases(r.countrydata[0].total_cases);
-        setCountryDeaths(r.countrydata[0].total_deaths);
-        setRecovered(r.countrydata[0].total_recovered);
-        setNewCases(r.countrydata[0].total_new_cases_today);
-        setNewDeaths(r.countrydata[0].total_new_deaths_today);
+        const america = r.Countries.filter((x) => x.Country.includes("America"));
+
+        setCountryCases(america[0].TotalConfirmed);
+        setCountryDeaths(america[0].TotalDeaths);
+        setRecovered(america[0].TotalRecovered);
+        setNewCases(america[0].NewConfirmed);
+        setNewDeaths(america[0].NewDeaths);
       });
   };
 
@@ -116,7 +118,7 @@ const Country = (props) => {
               <Text style = {styles.numericText}>{newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
             </View>
 
-            <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
+            <Text style={styles.detailTextSmall}>Source: Johns Hopkins</Text>
           </View>
         </Modal>
         <Card style={styles.countryCard}>
