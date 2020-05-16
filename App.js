@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   TouchableWithoutFeedback,
@@ -6,7 +6,6 @@ import {
   Keyboard,
   ActivityIndicator,
   Modal,
-  Text,
 } from "react-native";
 
 import Header from "./components/Header";
@@ -15,19 +14,14 @@ import Search from "./components/Search";
 import Country from "./components/Country";
 import Global from "./components/Global";
 import NewCountry from "./components/NewCountry";
-import Notifications from "./components/Notifications";
 import News from "./components/News";
-import Donate from "./components/Donate";
 import NavBar from "./components/NavBar";
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 
-
 export default function App() {
   const [searchLoading, setSearchLoading] = useState(false);
-  const [notifications, setNotifications] = useState(false);
   const [news, setNews] = useState(false);
-  const [donate, setDonate] = useState(false);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -39,34 +33,10 @@ export default function App() {
             <ActivityIndicator size="large" />
           </View>
         </Modal>
-        <Modal visible={notifications}>
-          <View style={styles.screen}>
-            <Notifications />
-            <NavBar
-              setNews={setNews}
-              setDonate={setDonate}
-              setNotifications={setNotifications}
-            />
-          </View>
-        </Modal>
         <Modal visible={news}>
           <View style={styles.screen}>
             <News />
-            <NavBar
-              setNews={setNews}
-              setDonate={setDonate}
-              setNotifications={setNotifications}
-            />
-          </View>
-        </Modal>
-        <Modal visible={donate}>
-          <View style={styles.screen}>
-            <Donate />
-            <NavBar
-              setNews={setNews}
-              setDonate={setDonate}
-              setNotifications={setNotifications}
-            />
+            <NavBar setNews={setNews} />
           </View>
         </Modal>
         <Grid>
@@ -87,11 +57,7 @@ export default function App() {
             </Row>
           </Col>
         </Grid>
-        <NavBar
-          setNews={setNews}
-          setDonate={setDonate}
-          setNotifications={setNotifications}
-        />
+        <NavBar setNews={setNews} />
       </View>
     </TouchableWithoutFeedback>
   );

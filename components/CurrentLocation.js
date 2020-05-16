@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import Geocoder from "react-native-geocoding";
-import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 import Modal from "react-native-modal";
 import { Divider } from "react-native-elements";
 
@@ -248,7 +248,6 @@ const CurrentLocation = (props) => {
                 height: 1,
               }}
             />
-
             <Text style={styles.numbers}>
               {countyDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>

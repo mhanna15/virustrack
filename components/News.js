@@ -3,14 +3,13 @@ import {
   Text,
   View,
   StyleSheet,
-  Button,
   FlatList,
   Linking,
   Image,
   ActivityIndicator,
 } from "react-native";
 
-import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 import Card from "./Card";
 
@@ -98,6 +97,7 @@ const News = (props) => {
         <View style={styles.articles}>
           <FlatList
             data={articles}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View>
                 <Card

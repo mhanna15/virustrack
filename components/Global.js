@@ -5,12 +5,11 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
-  TouchableWithoutFeedback,
 } from "react-native";
 
-import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 import Modal from "react-native-modal";
-import { Divider } from 'react-native-elements';
+import { Divider } from "react-native-elements";
 
 import Card from "./Card";
 
@@ -58,7 +57,7 @@ const Global = (props) => {
 
   useEffect(() => {
     getCasesGlobally();
-  }, [globalCases]);
+  }, []);
 
   const showMore = () => {
     setDetailView(true);
@@ -90,39 +89,53 @@ const Global = (props) => {
           animationOut="fadeOut"
         >
           <View style={styles.modal}>
-            <Text style = {{marginTop: "3%", marginBottom: "3%", fontSize: 16, color: "white",}}>Global</Text>
-            <View style = {styles.modalView}>
+            <Text
+              style={{
+                marginTop: "3%",
+                marginBottom: "3%",
+                fontSize: 16,
+                color: "white",
+              }}
+            >
+              Global
+            </Text>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>Total Cases:</Text>
-              <Text style = {styles.numericText}>{globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.numericText}>
+                {globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
             </View>
-            <View style = {styles.modalView}>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>Total Deaths:</Text>
-              <Text style = {styles.numericText}>{globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.numericText}>
+                {globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
             </View>
-            <View style = {styles.modalView}>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>Total Recoveries:</Text>
-              <Text style = {styles.numericText}>{recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.numericText}>
+                {recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
             </View>
-            <View style = {styles.modalView}>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>Cases Today:</Text>
-              <Text style = {styles.numericText}>{newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.numericText}>
+                {newCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
             </View>
-            <View style = {styles.modalView}>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>Deaths Today:</Text>
-              <Text style = {styles.numericText}>{newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+              <Text style={styles.numericText}>
+                {newDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </Text>
             </View>
-            <View style = {styles.modalView}>
+            <View style={styles.modalView}>
               <Text style={styles.detailText}>Affected Countries:</Text>
-              <Text style = {styles.numericText}>{affectedCountries}</Text>
+              <Text style={styles.numericText}>{affectedCountries}</Text>
             </View>
-
             <Text style={styles.detailTextSmall}>Sources: WHO, CDC</Text>
           </View>
-
-
-
         </Modal>
-
         <Card style={styles.globalCard}>
           <TouchableOpacity onPress={showMore}>
             <Text style={styles.title}>Global</Text>
@@ -130,7 +143,15 @@ const Global = (props) => {
               {globalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
             <Text style={styles.things}>Cases</Text>
-            <Divider style={{ backgroundColor: 'white', marginTop: "7%", marginLeft: "15%", marginRight: "15%", height: 1, }} />
+            <Divider
+              style={{
+                backgroundColor: "white",
+                marginTop: "7%",
+                marginLeft: "15%",
+                marginRight: "15%",
+                height: 1,
+              }}
+            />
             <Text style={styles.numbers}>
               {globalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </Text>
@@ -150,18 +171,18 @@ const styles = StyleSheet.create({
     fontSize: RFValue(22),
     fontFamily: "Avenir",
     color: "white",
-    marginLeft:"15%",
+    marginLeft: "15%",
   },
   numbers: {
     color: "white",
-    marginLeft:"15%",
+    marginLeft: "15%",
     fontFamily: "Avenir",
     fontWeight: "bold",
     fontSize: RFValue(23),
     paddingTop: "10%",
   },
   things: {
-    fontFamily:"Avenir",
+    fontFamily: "Avenir",
     marginTop: "1%",
     marginLeft: "15%",
     color: "white",
@@ -181,13 +202,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   modalView: {
-    display: "flex", 
-    flexDirection:"row", 
-    justifyContent:"space-between", 
-    borderBottomWidth: 0.5, 
-    borderBottomColor: "white", 
-    width: "90%", 
-    marginLeft: "10%", 
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "white",
+    width: "90%",
+    marginLeft: "10%",
     marginRight: "10%",
     marginBottom: "2%",
   },
@@ -209,7 +230,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(14),
     justifyContent: "flex-end",
     marginTop: "3%",
-    marginBottom:"5%",
+    marginBottom: "5%",
     color: "white",
   },
 });

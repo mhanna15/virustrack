@@ -6,11 +6,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Image,
-  Text,
 } from "react-native";
 
-import { RFValue, RFPercentage } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const Search = (props) => {
   const [zip, setZip] = useState("");
@@ -28,7 +26,10 @@ const Search = (props) => {
       .then((r) => {
         props.setSearchLoading(false);
         if (r.cases == undefined || r.deaths == undefined) {
-          setTimeout(() => Alert.alert("Sorry, please try another zip code nearby"), 40);
+          setTimeout(
+            () => Alert.alert("Sorry, please try another zip code nearby"),
+            40
+          );
         } else {
           setTimeout(
             () =>
@@ -89,7 +90,6 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     maxHeight: RFValue(55),
-    // backgroundColor:"red",
   },
   input: {
     backgroundColor: "white",

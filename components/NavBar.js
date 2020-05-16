@@ -1,39 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Icon } from "react-native-elements";
 import { RFValue } from "react-native-responsive-fontsize";
 
 const NavBar = (props) => {
   const handleHomeClick = () => {
-    // props.setNotifications(false);
-    // props.setDonate(false);
     props.setNews(false);
   };
 
   const handleNewsClick = () => {
     props.setNews(true);
-    // setTimeout(() => {
-    //   props.setNotifications(false);
-    //   props.setDonate(false);
-    // }, 200);
   };
-
-  // const handleNotificationsClick = () => {
-  //   props.setNotifications(true);
-  //   setTimeout(() => {
-  //     props.setDonate(false);
-  //     props.setNews(false);
-  //   }, 200);
-  // };
-
-  // const handleDonateClick = () => {
-  //   props.setDonate(true);
-  //   setTimeout(() => {
-  //     props.setNotifications(false);
-  //     props.setNews(false);
-  //   }, 200);
-  // };
 
   return (
     <View style={styles.background}>
@@ -57,26 +35,6 @@ const NavBar = (props) => {
           />
         </View>
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={handleNotificationsClick}>
-        <View style={styles.icon}>
-          <Icon
-            name="bell"
-            type="font-awesome"
-            style={styles.icon}
-            size={RFValue(30)}
-          />
-        </View>
-      </TouchableOpacity> */}
-      {/* <TouchableOpacity onPress={handleDonateClick}>
-        <View style={styles.icon}>
-          <Icon
-            name="usd"
-            type="font-awesome"
-            style={styles.icon}
-            size={RFValue(30)}
-          />
-        </View>
-      </TouchableOpacity> */}
     </View>
   );
 };
@@ -90,7 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    height: RFValue(75)
+    height: RFValue(75),
   },
   icon: {
     width: "100%",
